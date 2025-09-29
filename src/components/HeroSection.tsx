@@ -1,8 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { Calculator, Play, Settings } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
+import { useEffect, useState } from "react";
+import { useScrollAnimation } from "./hook/useScrollAnimation";
 
 const HeroSection = () => {
+  const [heroRef, heroVisible] = useScrollAnimation(0.1);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+        setLoaded(true);
+    }, []);
+
   return (
     <section className="relative flex items-center justify-center overflow-hidden">
       {/* ✅ Wrapper qui prend toute la largeur, sans marges blanches */}
@@ -25,7 +34,10 @@ const HeroSection = () => {
         <div className="absolute inset-0 z-20 hero-bg-pattern opacity-70" />
 
         {/* ✅ Contenu */}
-        <div className="relative z-30 text-center px-6 max-w-5xl mx-auto pt-32 pb-12">
+        <div ref={heroRef} 
+        className={`relative z-30 text-center px-6 max-w-5xl mx-auto pt-32 pb-12 leading-tight transition-all duration-1000 delay-200 ${
+                        heroVisible ? 'translate-x-0 opacity-100' : 'translate-y-10 opacity-0'
+                    }`}>
           <h1 className="hero-title text-white mb-6 md:text-5xl md:mx-52 font-neue-plak">
             Libérez 80% de votre temps opérationnel
           </h1>
