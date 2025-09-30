@@ -8,7 +8,7 @@ export function MetricsSection() {
   
   return (
     <div className={`w-full mx-auto bg-[#00929e] rounded-b-[50px] bg-[url(assets/images/pattern.png)] bg-repeat-x bg-cover`} style={{ backgroundImage: `url(${pattern})` }}>
-      <div className="bg-white w-full rounded-b-[50px] h-20"></div>
+      <div className="bg-[#efefef] w-full rounded-b-[50px] h-20"></div>
       <div className=" rounded-3xl p-12 text-white">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 justify-items-center mx-60 my-10">
           {/* Automatisations déployées */}

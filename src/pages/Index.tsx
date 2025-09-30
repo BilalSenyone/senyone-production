@@ -4,10 +4,11 @@ import Footer from "@/components/Footer";
 import Defis from "@/components/DefisSection";
 import { MetricsSection } from "@/components/MetriqueSection";
 import Screenshots from "@/components/ScreenshotsSection";
+import QuiSommesNousSection from "@/components/QuiAdonsNousSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen max-w-screen relative overflow-hidden">
+    <div className="min-h-screen max-w-screen relative overflow-hidden bg-[#efefef]">
       <Navbar />
       <div className="relative">
         <HeroSection />
@@ -17,6 +18,7 @@ const Index = () => {
         <MetricsSection />
       </div>
       <Defis />
+      <QuiSommesNousSection />
       <Footer />
     </div>
   );
