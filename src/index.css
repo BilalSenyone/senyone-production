@@ -159,12 +159,17 @@
   font-family: 'Neue Plak', system-ui, sans-serif;
 }
 
+.font-neue-plak-normal {
+  font-family: 'Neue Plak Regular', system-ui, sans-serif;
+  font-weight: normal
+}
+
 .navbar-glass {
   @apply bg-black/40 backdrop-blur-md border border-white/10 shadow-lg;
 }
 
 @font-face {
-  font-family: "Neue Plak";
+  font-family: "Neue Plak Regular";
   src: url("/src/assets/fonts/NeuePlakText-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
@@ -178,7 +183,7 @@
 }
 
 @font-face {
-  font-family: "Neue Plak";
+  font-family: "Neue Plak Black";
   src: url("/src/assets/fonts/NeuePlak-Black.ttf") format("truetype");
   font-weight: bolder;
   font-style: normal;

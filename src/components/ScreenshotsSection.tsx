@@ -7,8 +7,6 @@ import { useScrollAnimation } from "./hook/useScrollAnimation";
 const Screenshots = () => {
   const [sectionRef, sectionVisible] = useScrollAnimation(0.1);
 
-
-
   return (
 <div ref={sectionRef} className="relative w-full flex flex-col items-center justify-center min-h-screen -mt-40 z-10">
       

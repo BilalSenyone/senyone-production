@@ -7,13 +7,13 @@ import Screenshots from "@/components/ScreenshotsSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen max-w-screen relative">
+    <div className="min-h-screen max-w-screen relative overflow-hidden">
       <Navbar />
       <div className="relative">
         <HeroSection />
         <Screenshots />
       </div>
-      <div className="my-24">
+      <div className="my-2">
         <MetricsSection />
       </div>
       <Defis />
