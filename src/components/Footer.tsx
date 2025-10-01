@@ -1,10 +1,10 @@
 import { useState } from "react";
-import logo from "../assets/images/logosenyone.png"; // Ton logo
+import logo from "../assets/SENYONE-09.svg"; // Ton logo
 
 const Footer = () => {
   return (
-    <footer className="bg-[#383838] text-white py-16"> {/* Fond noir clair */}
-      <div className="max-w-7xl mx-auto px-6">
+    <footer className="bg-[#383838] text-white py-16 font-neue-plak-normal"> {/* Fond noir clair */}
+      <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Logo Section */}
           <div className="lg:col-span-1">
@@ -12,21 +12,21 @@ const Footer = () => {
             <img
               src={logo}
               alt="SENYONE"
-              className="h-20 w-auto object-contain"
+              className="h-24 w-auto object-contain"
             />
           </div>
           </div>
 
           {/* Nos ressources */}
           <div className="lg:col-span-1">
-            <h3 className="text-white font-plus-jakarta font-semibold text-lg mb-6">
+            <h3 className="text-white font-plus-jakarta font-semibold text-sm mb-6">
               Nos ressources
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3 text-xs">
               <li>
                 <a 
                   href="#" 
-                  className="text-white hover:text-gray-300 transition-colors font-inter text-sm"
+                  className="text-white hover:text-gray-300 transition-colors "
                 >
                   Nos solutions
                 </a>
@@ -34,7 +34,7 @@ const Footer = () => {
               <li>
                 <a 
                   href="#" 
-                  className="text-white hover:text-gray-300 transition-colors font-inter text-sm"
+                  className="text-white hover:text-gray-300 transition-colors "
                 >
                   Blog
                 </a>
@@ -44,27 +44,27 @@ const Footer = () => {
 
           {/* Qui sommes-nous ? */}
           <div className="lg:col-span-1">
-            <h3 className="text-white font-plus-jakarta font-semibold text-lg mb-6">
+            <h3 className="text-white font-semibold text-sm mb-6">
               Qui sommes-nous ?
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3 text-xs">
               <li>
-                <a href="#" className="text-white hover:text-gray-300 transition-colors font-inter text-sm">
+                <a href="#" className="text-white hover:text-gray-300 transition-colors">
                   Notre mission
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-gray-300 transition-colors font-inter text-sm">
+                <a href="#" className="text-white hover:text-gray-300 transition-colors">
                   Nos valeurs
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-gray-300 transition-colors font-inter text-sm">
+                <a href="#" className="text-white hover:text-gray-300 transition-colors">
                   Notre équipe
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-gray-300 transition-colors font-inter text-sm">
+                <a href="#" className="text-white hover:text-gray-300 transition-colors">
                   Notre approche
                 </a>
               </li>
@@ -73,47 +73,47 @@ const Footer = () => {
 
           {/* Qui aidons-nous ? */}
           <div className="lg:col-span-1">
-            <h3 className="text-white font-plus-jakarta font-semibold text-lg mb-6">
+            <h3 className="text-white font-semibold text-sm mb-6">
               Qui aidons-nous ?
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3 font-neue-plak-thin text-xs">
               <li>
-                <a href="#" className="text-white hover:text-gray-300 transition-colors font-inter text-sm">
+                <a href="#" className="text-white hover:text-gray-300 transition-colors">
                   Direction financière
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-gray-300 transition-colors font-inter text-sm">
+                <a href="#" className="text-white hover:text-gray-300 transition-colors">
                   Direction des ressources humaines
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-gray-300 transition-colors font-inter text-sm">
+                <a href="#" className="text-white hover:text-gray-300 transition-colors">
                   Direction Informatique
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-gray-300 transition-colors font-inter text-sm">
+                <a href="#" className="text-white hover:text-gray-300 transition-colors">
                   Direction commerciale
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-gray-300 transition-colors font-inter text-sm">
+                <a href="#" className="text-white hover:text-gray-300 transition-colors">
                   Direction Achats/Logistique
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-gray-300 transition-colors font-inter text-sm">
+                <a href="#" className="text-white hover:text-gray-300 transition-colors">
                   Direction Marketing
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-gray-300 transition-colors font-inter text-sm">
+                <a href="#" className="text-white hover:text-gray-300 transition-colors">
                   Direction Juridique
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-gray-300 transition-colors font-inter text-sm">
+                <a href="#" className="text-white hover:text-gray-300 transition-colors">
                   Direction des opérations
                 </a>
               </li>
@@ -122,10 +122,10 @@ const Footer = () => {
 
           {/* Contacts */}
           <div className="lg:col-span-1">
-            <h3 className="text-white font-plus-jakarta font-semibold text-lg mb-6">
+            <h3 className="text-white font-plus-jakarta font-semibold text-sm mb-6">
               Contacts
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-4 font-neue-plak-thin text-xs">
               <div>
                 <p className="text-white font-inter text-sm leading-relaxed">
                   50 Cité Panoramique, Liberté 6<br />
@@ -134,12 +134,13 @@ const Footer = () => {
                 </p>
               </div>
               <div>
-                <a href="tel:+221774592047" className="text-white hover:text-gray-300 transition-colors font-inter text-sm font-medium">
+                <a href="tel:+221774592047" 
+                className="text-[#E44849] hover:text-gray-300 transition-colors font-inter">
                   +221 77 459 20 47
                 </a>
               </div>
               <div>
-                <a href="mailto:contact@senyone.sn" className="text-white hover:text-gray-300 transition-colors font-inter text-sm font-medium">
+                <a href="mailto:contact@senyone.sn" className="text-[#E44849] hover:text-gray-300 transition-colors font-inter ">
                   contact@senyone.sn
                 </a>
               </div>

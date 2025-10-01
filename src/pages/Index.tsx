@@ -8,6 +8,7 @@ import QuiSommesNousSection from "@/components/QuiAdonsNousSection";
 import NosReussitesClient from "@/components/NosReussitesClient";
 import IlsNousOntFaitConfiance from "@/components/IlsNousOntFaitConfiance";
 import EcosystemeTechnologique from "@/components/EcosystemeTechnologique";
+import TransformationCTA from "@/components/PretAtransformerCTA";
 
 const Index = () => {
   return (
@@ -25,6 +26,7 @@ const Index = () => {
       <NosReussitesClient />
       <IlsNousOntFaitConfiance />
       <EcosystemeTechnologique />
+      <TransformationCTA />
       <Footer />
     </div>
   );
