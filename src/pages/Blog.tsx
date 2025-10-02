@@ -5,7 +5,7 @@ import { Select, SelectContent, SelectGroup, SelectTrigger, SelectItem, SelectVa
 import rpaCover from "@/assets/images/rpa2.jpg";
 import ArticleCard from "@/components/ui/article";
 import { Button } from "@/components/ui/button";
-
+import Footer from "@/components/Footer";
 
 const Blog = () => {
 
@@ -144,6 +144,7 @@ const Blog = () => {
           ))}
       </div>
     </div>
+    <Footer />
     </div>
   );
 };
