@@ -7,12 +7,14 @@ interface HeroSectionProps {
   showButtons?: boolean;
   title?: string;
   description?: string;
+  maxWidth?: string;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({
   showButtons = true,
   title = "Libérez 80% de votre temps opérationnel",
   description = "SENYONE, Leader de la Smart Automation en Afrique de l'Ouest",
+  maxWidth = "max-w-5xl",
 }) => {
   const [heroRef, heroVisible] = useScrollAnimation(0.1);
 
@@ -39,7 +41,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         {/* ✅ Contenu */}
         <div
           ref={heroRef}
-          className={`relative z-30 text-center px-6 max-w-5xl mx-auto pt-32 pb-12 leading-tight transition-all duration-1000 delay-200 ${
+          className={`relative z-30 text-center px-6 ${maxWidth} mx-auto pt-32 pb-12 leading-tight transition-all duration-1000 delay-200 ${
             heroVisible ? "translate-x-0 opacity-100" : "translate-y-10 opacity-0"
           }`}
         >
