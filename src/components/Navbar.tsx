@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import logo from "../assets/images/logosenyone.png"; // Ton logo
+import logo from "../assets/images/logosenyone-copie.png"; // Ton logo
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -19,7 +19,7 @@ const Navbar = () => {
             <img
               src={logo}
               alt="SENYONE"
-              className="h-10 w-auto object-contain"
+              className="w-32 h-auto"
               
             />
             </a>

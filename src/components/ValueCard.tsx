@@ -19,7 +19,7 @@ export const ValueCard = ({
   
   return (
     <div 
-      className={`relative overflow-hidden rounded-xl px-4 py-8 min-h-96 transition-all duration-300 hover:shadow-lg ${
+      className={`relative overflow-hidden rounded-xl px-4 py-8 min-h-80 transition-all duration-300 hover:shadow-lg ${
         isGradient 
           ? 'bg-gradient-to-r from-[#E44849] to-[#ED6E3D] text-white' 
           : 'bg-white text-[#383838] border-[#BDBDBD] border-[1px]'
@@ -28,7 +28,7 @@ export const ValueCard = ({
       <div className="relative z-10">
         <div className="mb-6">
           <div 
-            className={`w-20 h-20 rounded-xl flex items-center justify-center ${
+            className={`w-16 h-16 rounded-xl flex items-center justify-center ${
               isGradient ? 'bg-white' : 'bg-gradient-to-r from-[#E44849] to-[#ED6E3D]'
             }`}
           >
@@ -40,7 +40,7 @@ export const ValueCard = ({
         }`}>
           {title}
         </h3>
-        <p className={`text-md  leading-relaxed ${
+        <p className={`text-sm  leading-relaxed ${
           isGradient ? 'text-white/90' : 'text-[#383838]'
         }`}>
           {description}

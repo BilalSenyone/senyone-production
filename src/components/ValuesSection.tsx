@@ -1,5 +1,6 @@
 import { ValueCard } from './ValueCard';
 import { MapPin, Users, Lightbulb, HeartHandshake } from 'lucide-react';
+import pattern from '@/assets/images/pattern.png';
 
 export const ValuesSection = () => {
   const values = [
@@ -24,13 +25,27 @@ export const ValuesSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      className="py-16 rounded-b-[50px] relative overflow-hidden"
+      style={{
+        backgroundImage: `url(${pattern})`,
+        backgroundRepeat: 'repeat',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div
+        className="pointer-events-none absolute inset-0 opacity-50"
+        style={{
+          background: "linear-gradient(to bottom, #ffffff 0%, #ffffff 40%, #e4484871 100%)",
+        }}
+      />
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-start mb-4">
           <h2 className="text-xl md:text-3xl font-neue-plak font-bold text-gray-900 mb-6">Nos Valeurs</h2>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
           {values.map((value, index) => (
             <ValueCard
               key={index}

@@ -1,7 +1,8 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import { ValuesSection } from "@/components/ValuesSection";
-import { MissionsSection } from "@/components/MissionsSection";
+import { NotreMissionSection } from "@/components/NotreMissionsSection";
+import { MissionsSection } from "@/components/MissionSection";
 import Footer from "@/components/Footer";
 
 
@@ -15,8 +16,10 @@ const QuiSommesNous = () => {
         showButtons={false}
         maxWidth="max-w-8xl"
       />
-      <ValuesSection />
+      
       <MissionsSection />
+      <ValuesSection />
+      <NotreMissionSection />
       <Footer />
     </div>
   );
