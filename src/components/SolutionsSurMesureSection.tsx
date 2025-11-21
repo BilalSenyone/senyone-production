@@ -1,14 +1,14 @@
 import { ReactNode } from "react";
 import { useScrollAnimation } from "./hook/useScrollAnimation";
 
-interface SolutionCardProps {
+export interface SolutionCardProps {
   icon: ReactNode;
   title: string;
   items: string[];
   badge: string;
 }
 
-interface SolutionsSurMesureSectionProps {
+export interface SolutionsSurMesureSectionProps {
   cards: SolutionCardProps[];
 }
 

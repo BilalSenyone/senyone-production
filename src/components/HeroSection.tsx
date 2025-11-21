@@ -10,6 +10,11 @@ interface HeroSectionProps {
   maxWidth?: string;
 }
 
+export interface HeroText {
+  title: string;
+  description: string;
+}
+
 const HeroSection: React.FC<HeroSectionProps> = ({
   showButtons = true,
   title = "Libérez 80% de votre temps opérationnel",

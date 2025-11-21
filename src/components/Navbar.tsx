@@ -84,13 +84,10 @@ const Navbar = () => {
             <a href="./Qui-sommes-Nous?" className="text-white/90 hover:text-white transition-colors font-medium">
               Qui sommes-nous ?
             </a>
-            <a href="./Qui-aidons-nous?" className="text-white/90 hover:text-white transition-colors font-medium">
-              Qui aidons-nous ?
-            </a>
             <div className="">
               <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
               className=" text-white flex items-center justify-between w-full py-2 px-3 rounded-xl font-medium text-heading md:w-auto hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:p-0">
-              Dropdown 
+              Qui aidons-nous ? 
               <svg className="w-4 h-4 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/></svg>
               </button>
 
