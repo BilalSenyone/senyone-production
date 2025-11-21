@@ -5,10 +5,12 @@ import { cn } from "@/lib/utils";
 export type Slide = {
   id: number;
   title: string;
-  description: string;
+  description?: string;
+  list?: string[];
   image: string;
   buttonText?: string;
   buttonLink?: string;
+  badge?: string;
 };
 
 type CarouselProps = {
@@ -16,6 +18,7 @@ type CarouselProps = {
   height?: string;
   className?: string;
   transitionSpeed?: number; // en secondes
+  colorType?: boolean;
 };
 
 export const Carousel: React.FC<CarouselProps> = ({
@@ -23,6 +26,7 @@ export const Carousel: React.FC<CarouselProps> = ({
   height = "h-[500px]",
   className,
   transitionSpeed = 0.45,
+  colorType = true,
 }) => {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState<"up" | "down">("up");
@@ -77,7 +81,7 @@ export const Carousel: React.FC<CarouselProps> = ({
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: "linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,146,158,1) 100%)",
+            background: colorType ? "linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,146,158,1) 100%)" : "linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(228,72,73,1) 100%)",
           }}
         />
       </div>
@@ -96,12 +100,23 @@ export const Carousel: React.FC<CarouselProps> = ({
               transition={{ duration: transitionSpeed, ease: "easeInOut" }}
               className="absolute inset-0 flex flex-col justify-center p-10 w-full h-full"
             >
-              <div className="w-full max-w-4xl mx-auto text-white">
+              <div className="w-full max-w-7xl mx-auto text-white">
+                {slides[current].badge && 
+                  <span className="mb-6 text-lg opacity-95 p-2 border-[#00929E] border-2 rounded-md border-white">{slides[current].badge}</span>
+                }
+                
                 {/* Titre avec taille fixe 75px */}
                 <h2 className="text-[75px] font-bold mb-4 leading-tight font-neue-plak">
                   {slides[current].title}
                 </h2>
-                <p className="mb-6 text-lg opacity-95">{slides[current].description}</p>
+                {slides[current].list && (
+                  <ul className="mb-6 text-lg opacity-95 list-disc list-inside">
+                    {slides[current].list.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                )}
+                {slides[current].description && <p className="mb-6 text-lg opacity-95">{slides[current].description}</p>}
                 {slides[current].buttonText && (
                   <a
                     href={slides[current].buttonLink}

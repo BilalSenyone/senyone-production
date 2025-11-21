@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import Defis from "@/components/DefisSection";
 import { MetricsSection } from "@/components/MetriqueSection";
 import Screenshots from "@/components/ScreenshotsSection";
-import QuiSommesNousSection from "@/components/QuiAdonsNousSection";
+import QuiAdonsNousSection from "@/components/QuiAdonsNousSection";
 import NosReussitesClient from "@/components/NosReussitesClient";
 import IlsNousOntFaitConfiance from "@/components/IlsNousOntFaitConfiance";
 import EcosystemeTechnologique from "@/components/EcosystemeTechnologique";
@@ -22,7 +22,7 @@ const Index = () => {
         <MetricsSection />
       </div>
       <Defis />
-      <QuiSommesNousSection />
+      <QuiAdonsNousSection />
       <NosReussitesClient />
       <IlsNousOntFaitConfiance />
       <EcosystemeTechnologique />

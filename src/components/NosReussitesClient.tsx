@@ -104,7 +104,7 @@ export default function ClientCarousel() {
 
   return (
     <div className=" py-12 px-4">
-      <div className="max-w-5xl mx-auto text-start">
+      <div className="max-w-7xl mx-auto text-start">
         <h2 className="text-3xl font-bold font-neue-plak">Nos réussites clients</h2>
         <p className="text-gray-600 mt-2 font-neue-plak-normal">
           De l’idée à l’impact. Des résultats concrets.
@@ -112,7 +112,7 @@ export default function ClientCarousel() {
       </div>
 
       {/* Carousel */}
-      <div className="relative mt-10 max-w-6xl mx-auto flex items-center font-neue-plak-normal">
+      <div className="relative mt-10 max-w-7xl mx-auto flex items-center font-neue-plak-normal">
         {/* Bouton gauche */}
         <button
           onClick={prevSlide}

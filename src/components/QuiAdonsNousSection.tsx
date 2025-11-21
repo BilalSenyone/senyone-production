@@ -60,7 +60,7 @@ const slides: Slide[] = [
   },
 ];
 
-export default function QuiSommesNousSection() {
+export default function QuiAdonsNousSection() {
   return (
     <section className="py-16">
         <div className="text-start mb-10 flex flex-col mx-28">

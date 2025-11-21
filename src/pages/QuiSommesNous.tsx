@@ -9,6 +9,8 @@ import Footer from "@/components/Footer";
 import { Banniere } from "@/components/Banniere";
 import { EngagementRSE } from "@/components/EngagementRSE";
 import { Button } from "@/components/ui/button";
+import { SecteurExpertiseSection } from "@/components/SecteurExpertiseSection";
+import { PourquoiNousChoisir } from "@/components/PourquoiNousChoisir";
 
 const QuiSommesNous = () => {
   return (
@@ -26,8 +28,9 @@ const QuiSommesNous = () => {
       <NotreEquipeSection />
       <NotreApprocheSection />
       <NosResultatsChiffres />
+      <SecteurExpertiseSection />
+      <PourquoiNousChoisir />
       <EngagementRSE />
-      
       <Banniere />
       <Footer />
     </div>

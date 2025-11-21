@@ -7,7 +7,7 @@ export default function HomePage() {
   
   return (
     <div className="min-h-screen bg-[#efefef] py-16 px-4">
-      <div ref={heroRef} className={`max-w-5xl mx-auto transition-all duration-1000 delay-200 ${
+      <div ref={heroRef} className={`max-w-7xl mx-auto transition-all duration-1000 delay-200 ${
                         heroVisible ? 'translate-x-0 opacity-100' : 'translate-y-10 opacity-0'
                     }`}>
         {/* Header Section */}

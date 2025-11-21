@@ -9,7 +9,7 @@ export default function IlsNousOntFaitConfiance() {
 
   return (
     <div className="py-12">
-      <div className="max-w-5xl mx-auto text-start">
+      <div className="max-w-7xl mx-auto text-start">
         <h2 className="text-3xl font-bold font-neue-plak">Ils nous ont fait confiance</h2>
         <p className="text-gray-600 mt-2 font-neue-plak-normal">
           Découvrez quelques-uns de nos clients satisfaits.
