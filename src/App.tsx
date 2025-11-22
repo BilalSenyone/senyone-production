@@ -12,6 +12,8 @@ import Contact from "./pages/Contacts";
 import NotFound from "./pages/NotFound";
 import NosRessources from "./pages/NosRessources";
 import QANJuridique from "./pages/QANJuridique";
+import QANAchatsLogistique from "./pages/QANAchatsLogistique";
+import QANCommerciale from "./pages/QANCommerciale";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +32,8 @@ const App = () => (
           <Route path="/operations-production" element={<QANJuridique />} />
           <Route path="/marketing" element={<QANJuridique />} />
           <Route path="/financiere" element={<QANJuridique />} />
+          <Route path="/comerciale" element={<QANCommerciale />} />
+          <Route path="/achats-logistique" element={<QANAchatsLogistique />} />
           <Route path="/Nos-solutions" element={<NosSolutions />} />
           <Route path="/Nos-ressources" element={<NosRessources />} />
           <Route path="/Blog" element={<Blog />} />

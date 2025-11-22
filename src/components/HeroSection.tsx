@@ -24,7 +24,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   const [heroRef, heroVisible] = useScrollAnimation(0.1);
 
   return (
-    <section className="relative flex items-center justify-center overflow-hidden z-0">
+    <section id="hero-section" className="relative flex items-center justify-center overflow-hidden z-0">
       <div className="relative w-full overflow-hidden rounded-b-[50px]">
         {/* Background Image */}
         <div

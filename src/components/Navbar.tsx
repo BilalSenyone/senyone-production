@@ -1,10 +1,24 @@
 import { Button } from "@/components/ui/button";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import logo from "../assets/images/logosenyone-copie.png"; // Ton logo
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const closeTimeoutRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroSection = document.getElementById('hero-section');
+      if (heroSection) {
+        const heroHeight = heroSection.offsetHeight;
+        setIsScrolled(window.scrollY > heroHeight * 0.8);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -29,80 +43,83 @@ const Navbar = () => {
 
   const menuItems = [
     {
-      link: "./Qui-sommes-Nous?",
+      link: "./financiere",
       label: "Direction Financière",
     },
     {
-      link: "./Qui-aidons-nous?",
+      link: "./juridique",
       label: "Direction Juridique",
     },
     ,
     {
-      link: "./Nos-solutions",
+      link: "./marketing",
       label: "Direction Marketing",
     },
     ,
     {
-      link: "./Nos-solutions",
+      link: "./commerciale",
       label: "Direction Commerciale",
     },
     {
-      link: "./Nos-solutions",
+      link: "./ressources-humaines",
       label: "Direction des Ressources Humaines",
     },
     {
-      link: "./Blog",
+      link: "./operations-production",
       label: "Direction des Opérations/Production",
     },
     {
-      link: "./Contact",
+      link: "./informatique",
       label: "Direction Informatique",
     },
     {
-      link: "./Contact",
+      link: "./achats-logistique",
       label: "Direction Achat/Logistique",
     }
   ]
 
   return (
-    <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-6">
-      <div className="navbar-glass px-8 py-4 rounded-2xl">
-        <div className="flex items-center justify-between">
+    <nav className={`fixed top-10 left-0 w-full z-50 transition-all duration-300`}>
+      <div className={`max-w-7xl mx-auto px-6`}>
+        <div className={`shadow-xl ${isScrolled ? 'bg-white text-gray-900' : 'navbar-glass text-white'} px-8 py-4 rounded-2xl transition-all duration-300`}>
+        <div className="flex items-center justify-between ">
           {/* ✅ Logo */}
           <div className="flex items-center space-x-2">
-           <a href="/" className="text-white/90 hover:text-white transition-colors font-medium">
+           <a href="/" className={`${isScrolled ? 'text-gray-900' : 'text-white/90 hover:text-white'} transition-colors font-medium`}>
             <img
               src={logo}
               alt="SENYONE"
-              className="w-32 h-auto"
+              className={`h-auto w-32 transition-all duration-300`}
             />
             </a>
           </div>
 
           {/* ✅ Navigation Links */}
           <div className="hidden md:flex items-center space-x-8 relative">
-            <a href="./Qui-sommes-Nous?" className="text-white/90 hover:text-white transition-colors font-medium">
+            <a href="./Qui-sommes-Nous?" className={`${isScrolled ? 'text-gray-900 hover:text-gray-600' : 'text-white/90 hover:text-white'} transition-colors font-medium`}>
               Qui sommes-nous ?
             </a>
             <div className="">
               <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
-              className=" text-white flex items-center justify-between w-full py-2 px-3 rounded-xl font-medium text-heading md:w-auto hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:p-0">
+              className={`${isScrolled ? 'text-gray-900 hover:text-gray-600' : 'text-white hover:text-white/80'} flex items-center justify-between w-full py-2 px-3 rounded-xl font-medium text-heading md:w-auto md:hover:bg-transparent md:border-0 md:p-0`}>
               Qui aidons-nous ? 
-              <svg className="w-4 h-4 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/></svg>
+              <svg className="w-4 h-4 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke={isScrolled ? '#1f2937' : 'currentColor'} stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/></svg>
               </button>
 
               <div
               onMouseEnter={handleDropdownMouseEnter}
               onMouseLeave={handleDropdownMouseLeave}
               className={`transition-all duration-300 ease-in-out z-10 absolute ${ isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"} 
-              bg-neutral-900 border border-neutral-700/50 rounded-sm w-64`}>
-                  <ul className="p-2 text-sm text-white text-body font-medium">
+              ${isScrolled ? 'bg-white border border-gray-200' : 'bg-neutral-900 border-neutral-700/50'} rounded-sm w-64`}>
+                  <ul className="p-2 text-sm text-body font-medium">
                     {menuItems.map((item, index) => (
                       <li key={index}>
                         <a href={item.link} 
                         className={`inline-flex items-center w-full p-2 
-                        hover:bg-neutral-800 hover:text-heading rounded
-                          ${ isMobileMenuOpen ? "visible" : "hidden"} `}
+                        ${isScrolled 
+                          ? 'hover:bg-gray-100 text-gray-700' 
+                          : 'hover:bg-neutral-800 text-white hover:text-heading'} 
+                        rounded ${isMobileMenuOpen ? "visible" : "hidden"}`}
                         >{item.label}</a>
                       </li>
                     ))}
@@ -110,16 +127,16 @@ const Navbar = () => {
               </div>
             </div>
             <a href="Nos-solutions" 
-            className="text-white/90 hover:text-white transition-colors font-medium">
+            className={`${isScrolled ? 'text-gray-900 hover:text-gray-600' : 'text-white/90 hover:text-white'} transition-colors font-medium`}>
               Nos solutions
             </a>
-            <a href="Blog" className="text-white/90 hover:text-white transition-colors font-medium">
+            <a href="Blog" className={`${isScrolled ? 'text-gray-900 hover:text-gray-600' : 'text-white/90 hover:text-white'} transition-colors font-medium`}>
               Blog
             </a>
           </div>
 
           {/* ✅ Contact Button */}
-          <Button className="btn-coral hidden md:block rounded-xl">
+          <Button className="btn-coral md:block rounded-xl">
              <a href="Contact" className="text-white/90 hover:text-white transition-colors font-medium">
               Nous contacter
             </a>
@@ -128,7 +145,7 @@ const Navbar = () => {
           {/* ✅ Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            className="md:hidden text-white transition-transform duration-200 hover:scale-110"
+            className={`md:hidden ${isScrolled ? 'text-gray-900' : 'text-white'} transition-all duration-200 hover:scale-110`}
           >
             <svg
               className={`w-6 h-6 transition-transform duration-300 ${
@@ -163,38 +180,38 @@ const Navbar = () => {
             isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="pt-4 pb-2 space-y-3 border-t border-white/20 mt-4">
+          <div className={`pt-4 pb-2 space-y-3 border-t ${isScrolled ? 'border-gray-200' : 'border-white/20'} mt-4`}>
             <a
               href="/Qui-sommes-nous"
-              className="block text-white/90 hover:text-white transition-colors font-medium py-2 px-2 rounded-lg hover:bg-white/10"
+              className={`block ${isScrolled ? 'text-gray-700 hover:bg-gray-100' : 'text-white/90 hover:text-white hover:bg-white/10'} transition-colors font-medium py-2 px-2 rounded-lg`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Qui sommes-nous ?
             </a>
             <a
               href="/Qui-aidons-nous"
-              className="block text-white/90 hover:text-white transition-colors font-medium py-2 px-2 rounded-lg hover:bg-white/10"
+              className={`block ${isScrolled ? 'text-gray-700 hover:bg-gray-100' : 'text-white/90 hover:text-white hover:bg-white/10'} transition-colors font-medium py-2 px-2 rounded-lg`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Qui aidons-nous ?
             </a>
             <a
               href="/Nos-Solutions"
-              className="block text-white/90 hover:text-white transition-colors font-medium py-2 px-2 rounded-lg hover:bg-white/10"
+              className={`block ${isScrolled ? 'text-gray-700 hover:bg-gray-100' : 'text-white/90 hover:text-white hover:bg-white/10'} transition-colors font-medium py-2 px-2 rounded-lg`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Nos solutions
             </a>
             <a
               href="/Blog"
-              className="block text-white/90 hover:text-white transition-colors font-medium py-2 px-2 rounded-lg hover:bg-white/10"
+              className={`block ${isScrolled ? 'text-gray-700 hover:bg-gray-100' : 'text-white/90 hover:text-white hover:bg-white/10'} transition-colors font-medium py-2 px-2 rounded-lg`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Blog
             </a>
             <div className="pt-2">
               <Button
-                className="btn-coral w-full rounded-xl"
+                className={`${isScrolled ? 'bg-blue-600 hover:bg-blue-700' : 'btn-coral'} w-full rounded-xl`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                  <a
@@ -207,6 +224,7 @@ const Navbar = () => {
               </Button>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </nav>
