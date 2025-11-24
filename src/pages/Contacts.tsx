@@ -7,7 +7,7 @@ const Contact = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <HeroSection title="Nous contacter" description="Vous souhaitez-nous contacter ? Voici ce dont vous avez besoin"/>
+      <HeroSection showButtons={false} title="Nous contacter" description="Vous souhaitez-nous contacter ? Voici ce dont vous avez besoin"/>
       <ContactForm />
       <Footer />
     </div>

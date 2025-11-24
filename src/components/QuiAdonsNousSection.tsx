@@ -11,7 +11,7 @@ const slides: Slide[] = [
       "Notre solution allie puissance technologique et expertise comptable. Bénéficiez de clôtures accélérées, de rapprochements automatiques et d'une conformité OHADA garantie pour une direction financière agile et sécurisée.",
     image: marketing,
     buttonText: "En savoir plus",
-    buttonLink: "#",
+    buttonLink: "/financiere",
   },
   {
     id:2,
@@ -20,7 +20,7 @@ const slides: Slide[] = [
       "Grâce à une traçabilité en temps réel et des prévisions pilotées par l'IA, maîtrisez vos coûts et transformez votre gestion des stocks en un avantage compétitif.",
     image: ventes,
     buttonText: "Découvrir",
-    buttonLink: "#",
+    buttonLink: "/achats-logistique",
   },
   {
     id:3,
@@ -29,7 +29,7 @@ const slides: Slide[] = [
       "De l'on-boarding digital à la paie automatisée, simplifiez toutes les tâches administratives et offrez à vos collaborateurs un portail dédié pour une expérience de travail modernisée.",
     image: ventes,
     buttonText: "Découvrir",
-    buttonLink: "#",
+    buttonLink: "/ressources-humaines",
   },
   {
     id:4,
@@ -38,7 +38,7 @@ const slides: Slide[] = [
       "Mettez en place des intégrations sans code, assurez une gouvernance data rigoureuse et maximisez le ROI de vos investissements technologiques pour une infrastructure agile et performante",
     image: ventes,
     buttonText: "En savoir plus",
-    buttonLink: "#",
+    buttonLink: "/informatique",
   },
   {
     id:5,
@@ -47,7 +47,7 @@ const slides: Slide[] = [
       "Générez des devis instantanés, automatisez les relances et utilisez des insights clients propulsés par l'IA pour conclure davantage de ventes et fidéliser votre portefeuille.",
     image: ventes,
     buttonText: "Découvrir",
-    buttonLink: "#",
+    buttonLink: "/commerciale",
   },
   {
     id:6,
@@ -56,7 +56,7 @@ const slides: Slide[] = [
       "Pilotez la performance en temps réel, garantissez la qualité et optimisez tous vos processus pour une exécution opérationnelle fluide, efficace et alignée sur vos objectifs",
     image: ventes,
     buttonText: "En savoir plus",
-    buttonLink: "#",
+    buttonLink: "/operations-production",
   },
 ];
 

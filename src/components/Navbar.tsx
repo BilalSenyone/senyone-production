@@ -203,14 +203,14 @@ const Navbar = () => {
               Qui aidons-nous ?
             </a>
             <a
-              href="/Nos-Solutions"
+              href="#"
               className={`block ${isScrolled ? 'text-gray-700 hover:bg-gray-100' : 'text-white/90 hover:text-white hover:bg-white/10'} transition-colors font-medium py-2 px-2 rounded-lg`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Nos solutions
             </a>
             <a
-              href="/Blog"
+              href="#"
               className={`block ${isScrolled ? 'text-gray-700 hover:bg-gray-100' : 'text-white/90 hover:text-white hover:bg-white/10'} transition-colors font-medium py-2 px-2 rounded-lg`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -222,7 +222,7 @@ const Navbar = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                  <a
-              href="/Contact"
+              href="/Contacts"
               
               onClick={() => setIsMobileMenuOpen(false)}
             >

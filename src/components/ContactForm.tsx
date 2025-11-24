@@ -70,7 +70,7 @@ const ContactForm = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg">
-        <h2 className="text-xl md:text-3xl font-neue-plak font-bold text-gray-900">Contactez-nous !</h2>
+        <h2 className="text-xl md:text-3xl font-neue-plak font-bold text-gray-800">Contactez-nous !</h2>
       <form ref={form} onSubmit={sendEmail} className="space-y-4  py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Nom */}
@@ -153,7 +153,7 @@ const ContactForm = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-[#00929E] text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-[#00929E] text-white py-2 px-4 rounded-md "
           >
             {isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
           </button>

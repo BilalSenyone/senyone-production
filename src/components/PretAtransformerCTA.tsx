@@ -87,9 +87,11 @@ export default function TransformationCTA() {
         <div className="border-t border-white/20 my-8"></div>
         
         {/* Bouton d'action */}
-        <button className="bg-white px-8 py-2 rounded-full font-semibold text-lg">
+        <a href="/contacts">
+          <button className="bg-white px-8 py-2 rounded-full font-semibold text-lg">
           Nous contacter
         </button>
+        </a>
       </div>
     </section>
   );

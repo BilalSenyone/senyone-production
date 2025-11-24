@@ -115,9 +115,11 @@ export default function HomePage() {
 
         {/* CTA Button */}
         <div className="text-center font-neue-plak-thin leading-0">
-          <Button className="bg-[#00929e] text-white px-8 py-3 rounded-full text-lg transition-colors">
-            Nous contacter
-          </Button>
+          <a href="/contacts">
+            <Button className="bg-[#00929e] text-white px-8 py-3 rounded-full text-lg transition-colors">
+              Nous contacter
+            </Button>
+          </a>
         </div>
       </div>
     </div>

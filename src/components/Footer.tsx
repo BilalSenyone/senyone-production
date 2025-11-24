@@ -132,7 +132,10 @@ const Footer = () => {
           {/* Contacts */}
           <div className="lg:col-span-1">
             <h3 className="text-white font-plus-jakarta font-semibold text-sm mb-6">
-              Contacts
+              <a href="/contacts">
+                Contacts
+              </a>
+              
             </h3>
             <div className="space-y-4 font-neue-plak-thin text-xs">
               <div>
