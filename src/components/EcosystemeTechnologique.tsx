@@ -11,12 +11,12 @@ export default function EcosystemeTechnologique() {
         className={`py-12 transition-all duration-1000 delay-200 ${
                         sectionVisible ? 'translate-x-0 opacity-100' : 'translate-y-10 opacity-0'
                     }`}>
-      <div className="max-w-5xl mx-auto text-start">
-        <h2 className="text-3xl font-bold font-neue-plak">Écosystème Technologique</h2>
-        <p className="text-gray-600 mt-2 font-neue-plak-normal">
+      <div className="max-w-5xl mx-auto px-4 md:px-0 text-start">
+        <h2 className="md:text-3xl text-xl font-bold font-neue-plak">Écosystème Technologique</h2>
+        <p className="md:text-base text-gray-600 md:mt-2 font-neue-plak-normal">
           Découvrez notre écosystème technologique.
         </p>
-        <div className="w-full py-10">
+        <div className="w-full py-4 md:py-10">
           <InfoCards
             data={[
               {

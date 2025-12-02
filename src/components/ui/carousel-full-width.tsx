@@ -23,7 +23,7 @@ type CarouselProps = {
 
 export const Carousel: React.FC<CarouselProps> = ({
   slides,
-  height = "h-[500px]",
+  height = "md:h-[500px] h-[300px]",
   className,
   transitionSpeed = 0.45,
   colorType = true,
@@ -98,7 +98,7 @@ export const Carousel: React.FC<CarouselProps> = ({
               animate="center"
               exit="exit"
               transition={{ duration: transitionSpeed, ease: "easeInOut" }}
-              className="absolute inset-0 flex flex-col justify-center p-10 w-full h-full"
+              className="absolute inset-0 flex flex-col justify-center px-4 md:px-0 md:p-10 w-full h-full"
             >
               <div className="w-full max-w-5xl mx-auto text-white">
                 {/*<div className="flex gap-6">
@@ -115,21 +115,21 @@ export const Carousel: React.FC<CarouselProps> = ({
                 
                 
                 {/* Titre avec taille fixe 75px */}
-                <h2 className="text-[75px] font-bold mb-4 leading-tight font-neue-plak">
+                <h2 className="md:text-[75px] text-3xl font-bold mb-4 leading-tight font-neue-plak">
                   {slides[current].title}
                 </h2>
                 {slides[current].list && (
-                  <ul className="mb-6 text-lg opacity-95 list-disc list-inside">
+                  <ul className="mb-6 md:text-lg text-sm opacity-95 list-disc list-inside">
                     {slides[current].list.map((item, index) => (
                       <li key={index}>{item}</li>
                     ))}
                   </ul>
                 )}
-                {slides[current].description && <p className="mb-6 text-lg opacity-95">{slides[current].description}</p>}
+                {slides[current].description && <p className="mb-6 md:text-lg text-sm opacity-95">{slides[current].description}</p>}
                 {slides[current].buttonText && (
                   <a
                     href={slides[current].buttonLink}
-                    className="inline-block bg-white text-black px-12 py-2 rounded-3xl font-medium hover:bg-gray-200 transition"
+                    className="inline-block bg-white text-sm md:text-base text-black md:px-12 md:py-2 px-6 py-1 rounded-3xl font-medium hover:bg-gray-200 transition"
                   >
                     {slides[current].buttonText}
                   </a>

@@ -8,16 +8,16 @@ export default function HomePage() {
   const [heroRef, heroVisible] = useScrollAnimation(0.1);
   
   return (
-    <div className="min-h-screen bg-[#efefef] py-16 px-4">
+    <div className="min-h-screen bg-[#efefef] md:py-16 py-12 px-4">
       <div ref={heroRef} className={`max-w-5xl mx-auto transition-all duration-1000 delay-200 ${
                         heroVisible ? 'translate-x-0 opacity-100' : 'translate-y-10 opacity-0'
                     }`}>
         {/* Header Section */}
         <div className="text-start mb-10">
-          <h1 className="text-4xl md:text-2xl font-bold text-[#000000] mb-2 font-neue-plak">
+          <h1 className="text-2xl font-bold text-[#000000] mb-2 font-neue-plak">
             Transformez vos défis en opportunités
           </h1>
-          <p className="text-lg text-[#383838] max-w-2xl text-start font-neue-plak-normal">
+          <p className="md:text-lg text-[#383838] max-w-2xl text-start font-neue-plak-normal">
             Pendant que vos concurrents hésitent, transformez radicalement votre organisation avec l'automatisation
             intelligente
           </p>

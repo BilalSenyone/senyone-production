@@ -39,6 +39,8 @@ const App = () => (
           <Route path="/financiere" element={<QANFinanciere />} />
           <Route path="/commerciale" element={<QANCommerciale />} />
           <Route path="/achats-logistique" element={<QANAchatsLogistique />} />
+          <Route path="/Nos-ressources" element={<NosRessources />} />
+          <Route path="/Nos-solutions" element={<NosSolutions />} />
           {
             /*  
             <Route path="/Nos-solutions" element={<NosSolutions />} />

@@ -5,14 +5,14 @@ const Footer = () => {
   return (
     <footer className="bg-[#383838] text-white py-16 font-neue-plak-normal"> {/* Fond noir clair */}
       <div className="max-w-5xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2 md:gap-8 lg:gap-12">
           {/* Logo Section */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-2">
             <img
               src={logo}
               alt="SENYONE"
-              className="h-24 w-auto object-contain"
+              className="md:h-24 h-16 w-auto object-contain"
             />
           </div>
           </div>
