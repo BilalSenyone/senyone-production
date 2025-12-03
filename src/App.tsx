@@ -41,13 +41,7 @@ const App = () => (
           <Route path="/achats-logistique" element={<QANAchatsLogistique />} />
           <Route path="/Nos-ressources" element={<NosRessources />} />
           <Route path="/Nos-solutions" element={<NosSolutions />} />
-          {
-            /*  
-            <Route path="/Nos-solutions" element={<NosSolutions />} />
-            <Route path="/Nos-ressources" element={<NosRessources />} />
-            <Route path="/Blog" element={<Blog />} />   
-            */
-          }
+          <Route path="/Blog" element={<Blog />} />
           
 
           <Route path="/Contacts" element={<Contact />} />

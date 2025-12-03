@@ -4,6 +4,7 @@ import  heroBg  from "@/assets/hero-bg.jpg"
 import  microsoftAzure  from "@/assets/microsoft-azure.png"
 import  uiPath  from "@/assets/uipath.png"
 import  python  from "@/assets/python.png"
+import { Button } from "@/components/ui/button";
 
 export default function Tabs() {
   const cardsTabOne = [
@@ -123,7 +124,7 @@ export default function Tabs() {
             })}
         </div>
         </div>) },
-    { id: 3, label: "Automatisation RPA", content: (
+    { id: 3, label: "Intelligence artificielle", content: (
         <div>
             <div className="text-center">
             <h2 className="text-sm font-neue-plak-normal text-gray-900 py-6">Transformez vos données en décisions</h2>
@@ -167,7 +168,7 @@ export default function Tabs() {
 
 function TabOne() {
   return (
-    <div className="rounded-2xl shadow space-y-12 bg-repeat-x bg-cover" 
+    <div className="rounded-2xl shadow space-y-6 bg-repeat-x bg-cover" 
     style={{ backgroundImage: `url(${heroBg})`}}>
     <h2 className="text-lg font-semibold p-6">Processus en 5 etapes</h2>
 
@@ -211,7 +212,7 @@ function TabOne() {
 
 function TabTwo() {
  return (
-    <div className="rounded-2xl shadow space-y-12 bg-repeat-x bg-cover" 
+    <div className="rounded-2xl shadow space-y-6 bg-repeat-x bg-cover" 
     style={{ backgroundImage: `url(${heroBg})`}}>
     <h2 className="text-lg font-semibold p-6">Approche RAPID</h2>
 
@@ -255,7 +256,7 @@ function TabTwo() {
 
 function TabThree() {
   return (
-    <div className="rounded-2xl shadow space-y-12 bg-repeat-x bg-cover" 
+    <div className="rounded-2xl shadow space-y-6 bg-repeat-x bg-cover" 
     style={{ backgroundImage: `url(${heroBg})`}}>
     <h2 className="text-lg font-semibold p-6">Approche RAPID</h2>
 
@@ -288,6 +289,11 @@ function TabThree() {
                 <li className="flex items-center gap-3"><span>🛠️</span> FAQ intelligente</li>
                 <li className="flex items-center gap-3"><span>🤝</span> Escalade contextuelle</li>
             </ul>
+        </div>
+        <div className="p-6">
+            <Button className="btn-white flex items-center gap-3 min-w-[200px] rounded-full">
+                Tester l'IA
+        </Button>
         </div>
         
     </div>

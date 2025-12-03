@@ -8,19 +8,19 @@ const Screenshots = () => {
   const [sectionRef, sectionVisible] = useScrollAnimation(0.1);
 
   return (
-<div ref={sectionRef} className="relative w-full flex flex-col items-center justify-center min-h-screen -mt-36 z-10">
+<div ref={sectionRef} className="relative w-full flex flex-col items-center justify-center h-[400px] md:h-[500px] -mt-24 z-10">
       
       {/* Card principale */}
-      <div className="w-full max-w-xl bg-white shadow-xl rounded-2xl px-6 py-20 relative">
-        <div className="h-48 rounded-xl"></div>
+      <div className="md:block hidden w-full max-w-xs md:max-w-xl bg-white shadow-xl rounded-2xl px-4 md:px-6 py-8 md:py-20 relative">
+        <div className="h-32 md:h-48 rounded-xl"></div>
       </div>
 
       {/* Logo centré */}
-      <div className="absolute top-1/2 transform -translate-y-1/2">
+      <div className="md:block hidden absolute top-1/2 transform -translate-y-1/2">
         <img
           src={logo}
           alt="Logo"
-          className="w-28 h-28 object-contain"
+          className="w-20 h-20 md:w-28 md:h-28 object-contain"
         />
       </div>
 
@@ -50,16 +50,16 @@ const Screenshots = () => {
       </div>
 
       {/* Version mobile : cards en colonne */}
-      <div className="mt-8 flex flex-col gap-4 w-full px-4 md:hidden">
+      <div className="flex flex-col w-full px-4 md:hidden relative">
         <img
           src={screen1}
           alt="Follower card"
-          className="rounded-xl object-cover"
+          className="absolute rounded-xl object-cover w-full max-w-xs mx-auto h-auto z-10 mt-8"
         />
         <img
           src={screen2}
           alt="Analitic card"
-          className="rounded-xl object-cover"
+          className="absolute rounded-xl object-cover w-full max-w-xs mx-auto h-auto -mt-12  ml-28"
         />
       </div>
     </div>

@@ -8,7 +8,7 @@ export default function HomePage() {
   const [heroRef, heroVisible] = useScrollAnimation(0.1);
   
   return (
-    <div className="min-h-screen bg-[#efefef] md:py-16 py-12 px-4">
+    <div className="min-h-screen bg-[#efefef] md:py-16 py-12 md:px-4 px-8">
       <div ref={heroRef} className={`max-w-5xl mx-auto transition-all duration-1000 delay-200 ${
                         heroVisible ? 'translate-x-0 opacity-100' : 'translate-y-10 opacity-0'
                     }`}>
@@ -28,7 +28,9 @@ export default function HomePage() {
           {/* Card 1: Digitalisation Zero Paper */}
           <Card className="p-8 bg-white rounded-2xl shadow-lg border-0">
             <div className="mb-6 mx-auto">
-              <PropertyDefault />
+              <div className="h-32 mb-12">
+                <PropertyDefault />
+              </div>
             </div>
 
             <h3 className="text-xl font-semibold text-[#000000] mb-4 font-neue-plak">Digitalisation Zero Paper</h3>
@@ -51,13 +53,13 @@ export default function HomePage() {
           {/* Card 2: Automatisation & processus */}
           <Card className="p-8 bg-white rounded-2xl shadow-lg border-0 font-neue-plak-normal">
             <div className="mb-6">
-              <div className="relative w-full h-32 mb-4">
+              <div className="relative w-full h-32 mb-12">
                 {/* Connecting tasks mockup */}
                 <ConnectingTasksAnimation />
               </div>
             </div>
 
-            <h3 className="text-xl font-semibold text-[#000000] mb-4">Automatisation & processus</h3>
+            <h3 className="text-lg sm:text-xl font-semibold text-[#000000] mb-4 font-neue-plak text-start">Automatisation & processus</h3>
 
             <p className="text-[#383838] mb-4">Vos équipes perdent du temps sur des tâches répétitives ?</p>
 
@@ -77,7 +79,7 @@ export default function HomePage() {
           {/* Card 3: Intelligence artificielle */}
           <Card className="p-8 bg-white rounded-2xl shadow-lg border-0 font-neue-plak-normal">
             <div className="mb-6">
-              <div className="relative w-full h-32 mb-4">
+              <div className="relative w-full h-32 mb-12">
                 {/* Chat interface mockup */}
                 <div className="bg-[#efefef] rounded-xl p-4 h-full">
                   <div className="space-y-2 mb-4">

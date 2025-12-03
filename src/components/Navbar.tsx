@@ -136,6 +136,11 @@ const Navbar = () => {
             transition-colors font-medium text-xs`}>
               Nos solutions
             </a>
+            <a href="Nos-ressources"  
+            className={`${isScrolled ? 'text-gray-900 hover:text-gray-600' : 'text-white/90 hover:text-white'} 
+            transition-colors font-medium text-xs`}>
+              Nos ressources
+            </a>
             <a href="Blog" className={`${isScrolled ? 'text-gray-900 hover:text-gray-600' : 'text-white/90 hover:text-white'} 
             transition-colors font-medium text-xs`}>
               Blog

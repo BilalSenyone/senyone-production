@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -11,37 +11,60 @@ export type Slide = {
   buttonText?: string;
   buttonLink?: string;
   badge?: string;
+  label?: string;
 };
 
 type CarouselProps = {
   slides: Slide[];
   height?: string;
   className?: string;
-  transitionSpeed?: number; // en secondes
+  transitionSpeed?: number;
   colorType?: boolean;
+  autoPlay?: boolean;
+  autoPlayInterval?: number;
+  showNavigation?: boolean;
 };
 
 export const Carousel: React.FC<CarouselProps> = ({
   slides,
-  height = "md:h-[500px] h-[300px]",
+  height = "h-[500px]",
   className,
   transitionSpeed = 0.45,
   colorType = true,
+  autoPlay = false,
+  autoPlayInterval = 3000,
+  showNavigation = true,
 }) => {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState<"up" | "down">("up");
 
   if (!slides || slides.length === 0) return null;
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setDirection("up");
     setCurrent((prev) => (prev + 1) % slides.length);
-  };
+  }, [slides.length]);
 
   const prevSlide = () => {
     setDirection("down");
     setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
   };
+
+  const goToSlide = (index: number) => {
+    setDirection(index > current ? "up" : "down");
+    setCurrent(index);
+  };
+
+  // Auto-play effect
+  useEffect(() => {
+    if (!autoPlay) return;
+
+    const interval = setInterval(() => {
+      nextSlide();
+    }, autoPlayInterval);
+
+    return () => clearInterval(interval);
+  }, [autoPlay, autoPlayInterval, nextSlide]);
 
   const variantsBackground = {
     enter: (dir: "up" | "down") => ({ y: dir === "up" ? "100%" : "-100%" }),
@@ -57,6 +80,31 @@ export const Carousel: React.FC<CarouselProps> = ({
 
   return (
     <div className={cn("relative w-full overflow-hidden rounded-3xl", height, className)}>
+      {/* Navigation Labels */}
+      {showNavigation && (
+        <div className="absolute top-0 left-0 right-0 z-20 bg-gradient-to-b from-black/60 to-transparent">
+          <div className="flex items-center justify-start gap-4 sm:gap-6 md:gap-8 lg:gap-12 px-4 sm:px-6 md:px-10 lg:px-10 py-4 sm:py-6 overflow-x-auto scrollbar-hide">
+            {slides.map((slide, index) => (
+              <button
+                key={slide.id}
+                onClick={() => goToSlide(index)}
+                className={cn(
+                  "relative whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg font-neue-plak transition-all duration-300 pb-2",
+                  current === index
+                    ? "text-white font-bold"
+                    : "text-gray-400 hover:text-gray-200"
+                )}
+              >
+                {slide.badge}
+                {current === index && (
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-white"></span>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Background */}
       <div className="absolute inset-0 overflow-hidden">
         <AnimatePresence initial={false} custom={direction}>
@@ -81,7 +129,9 @@ export const Carousel: React.FC<CarouselProps> = ({
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: colorType ? "linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,146,158,1) 100%)" : "linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(228,72,73,1) 100%)",
+            background: colorType
+              ? "linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,146,158,1) 100%)"
+              : "linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(228,72,73,1) 100%)",
           }}
         />
       </div>

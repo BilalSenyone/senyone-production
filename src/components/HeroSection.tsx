@@ -70,11 +70,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 <Play className="w-5 h-5" />
                 Voir la démo
               </Button>
-
+              {/* 
               <Button className="btn-white flex items-center gap-3 min-w-[200px] rounded-full">
                 <Settings className="w-5 h-5" />
                 Diagnostic gratuit
               </Button>
+              */}
             </div>
           )}
         </div>

@@ -12,6 +12,7 @@ const slides: Slide[] = [
     image: marketing,
     buttonText: "En savoir plus",
     buttonLink: "/financiere",
+    badge: "Direction Financière"
   },
   {
     id:2,
@@ -21,6 +22,7 @@ const slides: Slide[] = [
     image: ventes,
     buttonText: "Découvrir",
     buttonLink: "/achats-logistique",
+    badge: "Direction Achats et Logistique"
   },
   {
     id:3,
@@ -30,6 +32,7 @@ const slides: Slide[] = [
     image: ventes,
     buttonText: "Découvrir",
     buttonLink: "/ressources-humaines",
+    badge: "Direction RH"
   },
   {
     id:4,
@@ -39,6 +42,7 @@ const slides: Slide[] = [
     image: ventes,
     buttonText: "En savoir plus",
     buttonLink: "/informatique",
+    badge: "Direction Informatique"
   },
   {
     id:5,
@@ -48,6 +52,7 @@ const slides: Slide[] = [
     image: ventes,
     buttonText: "Découvrir",
     buttonLink: "/commerciale",
+    badge: "Direction Commerciale"
   },
   {
     id:6,
@@ -57,6 +62,7 @@ const slides: Slide[] = [
     image: ventes,
     buttonText: "En savoir plus",
     buttonLink: "/operations-production",
+    badge: "Direction des opérations"
   },
 ];
 

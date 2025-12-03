@@ -15,10 +15,10 @@ const Index = () => {
     <div className="min-h-screen max-w-screen relative overflow-hidden bg-[#efefef]">
       <Navbar />
       <div className="relative">
-        <HeroSection showButtons={false} />
+        <HeroSection  />
         <Screenshots />
       </div>
-      <div className="my-2">
+      <div className="mb-2">
         <MetricsSection />
       </div>
       <Defis />
