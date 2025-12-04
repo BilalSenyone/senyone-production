@@ -5,6 +5,7 @@ import pattern from "@/assets/images/pattern.png";
 
 export function MetricsSection() {
   const [sectionRef, sectionVisible] = useScrollAnimation(0.1);
+  const [section2Ref, section2Visible] = useScrollAnimation(0.1);
   
   return (
     <div className={`w-full mx-auto bg-[#00929e] rounded-b-[50px] bg-[url(assets/images/pattern.png)] bg-repeat-x bg-cover`} style={{ backgroundImage: `url(${pattern})` }}>
@@ -14,14 +15,14 @@ export function MetricsSection() {
         <div className="hidden md:grid grid-cols-1 px-4 md:grid-cols-3 md:gap-12 justify-center 
         md:mx-auto md:my-10 md:w-[800px] h-[400px]">
           {/* Automatisations déployées */}
-          <div ref={sectionRef} className="flex flex-col justify-between md:mx-12 h-full">
+          <div ref={section2Ref} className="flex flex-col justify-between md:mx-12 h-full">
             <div className="space-y-6">
               <div className="flex justify-start">
                 <CalendarSync className="w-8 h-8 text-white" strokeWidth={1.5} />
               </div>
               <div className="space-y-2">
-                <AnimatedSlidingText text="+100" className="text-4xl font-bold w-full font-neue-plak"
-                repeat={true} repeatDelay={10} duration={0.3} delay={0} stagger={0.2} animate={sectionVisible} />
+                <AnimatedSlidingText text="+100" className="text-white text-4xl font-bold w-full font-neue-plak"
+                repeat={true} repeatDelay={10} duration={0.3} delay={0} stagger={0.2} animate={section2Visible} />
                 <h3 className="md:text-base text-sm font-medium leading-tight md:font-neue-plak text-start">
                   Automatisations
                   déployées
@@ -42,14 +43,14 @@ export function MetricsSection() {
           </div>
 
           {/* ROI Moyen */}
-          <div ref={sectionRef} className="flex flex-col justify-between md:mx-12 h-full">
+          <div ref={section2Ref} className="flex flex-col justify-between md:mx-12 h-full">
             <div className="space-y-6">
               <div className="flex justify-start">
                 <EqualApproximately className="w-8 h-8 text-white" strokeWidth={1.5} />
               </div>
               <div className="space-y-2">
-                <AnimatedSlidingText text="300%" className="text-4xl font-bold w-full font-neue-plak"
-                repeat={true} repeatDelay={10} duration={0.3} delay={0} stagger={0.2} animate={sectionVisible} />
+                <AnimatedSlidingText text="300%" className="text-white text-4xl font-bold w-full font-neue-plak"
+                repeat={true} repeatDelay={10} duration={0.3} delay={0} stagger={0.2} animate={section2Visible} />
                 <h3 className="md:text-base text-sm font-medium leading-tight md:font-neue-plak text-start">
                   ROI moyen en 12 mois
                 </h3>
@@ -67,14 +68,14 @@ export function MetricsSection() {
           </div>
 
           {/* Économisés par client */}
-          <div ref={sectionRef} className="flex flex-col justify-between md:mx-12 h-full">
+          <div ref={section2Ref} className="flex flex-col justify-between md:mx-12 h-full">
             <div className="space-y-6">
               <div className="flex justify-start">
                 <BanknoteIcon className="w-8 h-8 text-white" strokeWidth={1.5} />
               </div>
               <div className="space-y-2">
                 <AnimatedSlidingText text="15M" className="text-4xl font-bold w-full font-neue-plak" 
-                duration={0.3} delay={0} stagger={0.2} animate={sectionVisible} repeat={true} repeatDelay={10} />
+                duration={0.3} delay={0} stagger={0.2} animate={section2Visible} repeat={true} repeatDelay={10} />
                 <h3 className="md:text-base text-sm font-medium leading-tight md:font-neue-plak text-start">
                   Economosé par client par an
                 </h3>

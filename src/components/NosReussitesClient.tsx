@@ -130,13 +130,15 @@ export default function ClientCarousel() {
             {slides.map((group, slideIndex) => (
               <div
                 key={slideIndex}
-                className="md:w-full flex justify-center md:gap-6 flex-shrink-0 py-10"
+                className="md:w-full flex justify-center 
+                md:gap-6 flex-shrink-0 py-10"
               >
                 {group.map((item, index) => (
                   <div
                     key={index}
-                    className="relative bg-white rounded-2xl shadow md:p-6 p-4
-                    md:w-80 max-w-96 md:max-w-80"
+                    className="relative bg-white mx-12
+                    rounded-2xl shadow md:p-6 p-4
+                    md:w-80 max-w-72 md:max-w-80"
                   >
                     {/* Image en arrière-plan */}
                     <div className="absolute inset-0 -z-10 -translate-x-[15px] -translate-y-[15px] rounded-2xl overflow-hidden">
