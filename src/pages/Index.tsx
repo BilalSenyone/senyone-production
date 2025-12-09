@@ -10,14 +10,16 @@ import IlsNousOntFaitConfiance from "@/components/IlsNousOntFaitConfiance";
 import EcosystemeTechnologique from "@/components/EcosystemeTechnologique";
 import TransformationCTA from "@/components/PretAtransformerCTA";
 import { WhatsAppWidget } from "@/components/WhatsAppWidget";
+import AutomationGraphic from "@/components/AutomationGraph";
 
 const Index = () => {
   return (
     <div className="min-h-screen max-w-screen relative overflow-hidden bg-[#efefef]">
       <Navbar />
-      <div className="relative">
-        <HeroSection  />
-        <Screenshots />
+      <HeroSection  />
+      <div className="py-44">
+      <AutomationGraphic/>
+
       </div>
       <div className="mb-2">
         <MetricsSection />

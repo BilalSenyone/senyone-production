@@ -148,7 +148,7 @@ export default function ClientCarousel() {
                     key={index}
                     className="relative bg-white
                     rounded-2xl shadow md:p-6 p-4
-                    md:w-80"
+                    md:w-80 flex flex-col justify-between items-start"
                   >
                     {/* Image en arrière-plan */}
                     <div className="absolute inset-0 -z-10 -translate-x-[15px] -translate-y-[15px] rounded-2xl overflow-hidden">
@@ -171,6 +171,9 @@ export default function ClientCarousel() {
                       <span className="font-semibold">Impact :</span>{" "}
                       {item.impact}
                     </p>
+                    <button className="border p-2 border-black rounded-lg">
+                      {item.buttonText}
+                    </button>
                   </div>
                 ))}
               </div>

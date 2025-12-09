@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { VideoModalProvider } from "@/contexts/VideoModalContext";
 import Index from "./pages/Index";
 import QuiSommesNous from "./pages/QuiSommesNous";
 import QuiAidonsNous from "./pages/interface/QuiAidonsNous";
@@ -19,15 +20,16 @@ import QANRessourcesHumaines from "./pages/QANRessourcesHumaines";
 import QANOperationProduction from "./pages/QANOperationProduction";
 import QANMarketing from "./pages/QANMarketing";
 import QANFinanciere from "./pages/QANFinanciere";
-import TestPage from "./pages/Test";
+import TestPage from "./pages/RoiDiagPage";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
+    <VideoModalProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
@@ -43,7 +45,7 @@ const App = () => (
           <Route path="/Nos-ressources" element={<NosRessources />} />
           <Route path="/Nos-solutions" element={<NosSolutions />} />
           <Route path="/Blog" element={<Blog />} />
-          <Route path="/test" element={<TestPage />} />
+          <Route path="/fast-diagnostic" element={<TestPage />} />
           
 
           <Route path="/Contacts" element={<Contact />} />
@@ -51,7 +53,8 @@ const App = () => (
           <Route path="*" element={<Index />} />
         </Routes>
       </BrowserRouter>
-    </TooltipProvider>
+      </TooltipProvider>
+    </VideoModalProvider>
   </QueryClientProvider>
 );
 

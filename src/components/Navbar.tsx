@@ -156,7 +156,7 @@ const Navbar = () => {
           </div>
 
           {/* ✅ Contact Button */}
-          <Button className="btn-coral md:block rounded-xl text-xs">
+          <Button className="btn-coral hidden md:block rounded-xl text-xs">
              <a href="/contacts" className="text-white/90 hover:text-white transition-colors font-medium">
               Nous contacter
             </a>
@@ -252,6 +252,11 @@ const Navbar = () => {
             >
               Blog
             </a>
+            <Button className="btn-coral rounded-xl text-xs">
+             <a href="/contacts" className="text-white/90 hover:text-white transition-colors font-medium">
+              Nous contacter
+            </a>
+          </Button>
           </div>
         </div>
         </div>

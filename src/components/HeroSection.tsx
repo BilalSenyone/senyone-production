@@ -1,7 +1,10 @@
+import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Calculator, Play, Settings } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { useScrollAnimation } from "./hook/useScrollAnimation";
+import VideoModal from "@/components/ui/VideoModal";
+import { useVideoModal } from "@/contexts/VideoModalContext";
 
 interface HeroSectionProps {
   showButtons?: boolean;
@@ -22,6 +25,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   maxWidth = "max-w-5xl",
 }) => {
   const [heroRef, heroVisible] = useScrollAnimation(0.1);
+  const { isVideoModalOpen, openVideoModal, closeVideoModal } = useVideoModal();
 
   return (
     <section id="hero-section" className="relative flex items-center justify-center overflow-hidden z-0">
@@ -60,16 +64,18 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 
           {/* Boutons d’action */}
           {showButtons && (
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
-              <Button className="btn-coral flex items-center gap-3 min-w-[200px] rounded-full">
+            <div className="z-20 flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
+              <button className="z-50 cursor-pointer bg-[#e44849] rounded-full
+              text-white py-4 px-8 flex items-center flex gap-3 min-w-[200px]">
                 <Calculator className="w-5 h-5" />
                 Calculer mon ROI
-              </Button>
-
-              <Button className="btn-teal flex items-center gap-3 min-w-[200px] rounded-full">
-                <Play className="w-5 h-5" />
-                Voir la démo
-              </Button>
+              </button>
+              <button className="z-50 cursor-pointer bg-[#00929E] text-white py-4 px-8
+              flex items-center flex gap-3 min-w-[200px] rounded-full" onClick={openVideoModal}>
+                  <Play className="w-5 h-5" />
+                  Voir la démo
+              </button>
+              
               {/* 
               <Button className="btn-white flex items-center gap-3 min-w-[200px] rounded-full">
                 <Settings className="w-5 h-5" />
@@ -86,6 +92,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         <div className="absolute bottom-32 left-16 w-10 h-10 bg-brand-green rounded-full animate-pulse opacity-50 animation-delay-2000 blur-xl"></div>
         <div className="absolute bottom-20 right-20 w-24 h-24 bg-brand-pink rounded-full animate-pulse opacity-0 animation-delay-500 blur-xl"></div>
       </div>
+
+      {/* Modal vidéo */}
+      <VideoModal 
+        isOpen={isVideoModalOpen}
+        onClose={closeVideoModal}
+        // Option 1: Vidéo locale (prioritaire)
+        videoSrc="/videos/demo.mp4"
+        // Option 2: Vidéo YouTube (fallback si vidéo locale n'existe pas)
+        videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ"
+      />
     </section>
   );
 };

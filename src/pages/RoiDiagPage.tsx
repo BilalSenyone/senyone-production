@@ -1,10 +1,10 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import Footer from "@/components/Footer";
-import QuestionComponent from "@/components/ui/question";
+import QuestionComponent from "@/components/ui/roi-calculator";
 
 
-const TestPage = () => {
+const RoiDiagPage = () => {
   return (
     <div className="min-h-screen max-w-screen relative overflow-hidden bg-[#efefef]">
       {/*<Navbar />
@@ -21,4 +21,4 @@ const TestPage = () => {
   );
 };
 
-export default TestPage;
+export default RoiDiagPage;
