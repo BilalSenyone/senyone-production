@@ -9,12 +9,14 @@ const Footer = () => {
           {/* Logo Section */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-2">
-            <img
-              src={logo}
-              alt="SENYONE"
-              className="md:h-24 h-16 w-auto object-contain"
-            />
-          </div>
+              <a href="/">
+                <img
+                    src={logo}
+                    alt="SENYONE"
+                    className="md:h-24 h-16 w-auto object-contain"
+                  />
+              </a>
+            </div>
           </div>
 
           {/* Nos ressources */}

@@ -77,7 +77,7 @@ export default function QuiAdonsNousSection() {
             Chaque direction a ses défis. Nous avons vos solutions
           </p>
         </div>
-      <Carousel slides={slides} height="md:h-[600px] h-[400px]" />
+      <Carousel slides={slides} height="md:h-[600px] h-[400px]" autoPlay={true} />
     </section>
   );
 }
