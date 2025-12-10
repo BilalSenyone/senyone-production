@@ -37,7 +37,8 @@ import {
   ArrowDown,
   ArrowLeft,
   ArrowRight as ArrowRightIcon,
-  MoveHorizontal
+  MoveHorizontal,
+  HouseIcon
 } from "lucide-react";
 
 type QuestionAnswer = number | string | number[];
@@ -249,15 +250,18 @@ export const ProfessionalSlider: React.FC<ProfessionalSliderProps> = ({
     }
   };
 
-  const handleDragStart = (thumbId: string) => {
+  const handleDragStart = (thumbId: string, e: React.MouseEvent | React.TouchEvent) => {
     if (disabled) return;
+    e.preventDefault();
     setActiveThumb(thumbId);
     setIsDragging(true);
+    setGlowEffect(true);
     
-    document.addEventListener('mousemove', handleDragMove);
-    document.addEventListener('mouseup', handleDragEnd);
-    document.addEventListener('touchmove', handleDragMove as any);
-    document.addEventListener('touchend', handleDragEnd);
+    // Add global event listeners immediately
+    document.addEventListener('mousemove', handleDragMove, { passive: false });
+    document.addEventListener('mouseup', handleDragEnd, { once: true });
+    document.addEventListener('touchmove', handleDragMove as any, { passive: false });
+    document.addEventListener('touchend', handleDragEnd, { once: true });
   };
 
   const handleDragMove = useCallback((e: MouseEvent | TouchEvent) => {
@@ -289,6 +293,35 @@ export const ProfessionalSlider: React.FC<ProfessionalSliderProps> = ({
     document.removeEventListener('touchmove', handleDragMove as any);
     document.removeEventListener('touchend', handleDragEnd);
   }, [handleDragMove]);
+
+  // Add global mouse/touch event handling for immediate drag response
+  useEffect(() => {
+    const handleGlobalMouseMove = (e: MouseEvent) => {
+      if (isDragging && activeThumb && sliderRef.current) {
+        handleDragMove(e);
+      }
+    };
+
+    const handleGlobalMouseUp = () => {
+      if (isDragging) {
+        handleDragEnd();
+      }
+    };
+
+    if (isDragging) {
+      document.addEventListener('mousemove', handleGlobalMouseMove, { passive: false });
+      document.addEventListener('mouseup', handleGlobalMouseUp, { once: true });
+      document.addEventListener('touchmove', handleGlobalMouseMove as any, { passive: false });
+      document.addEventListener('touchend', handleGlobalMouseUp, { once: true });
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleGlobalMouseMove);
+      document.removeEventListener('mouseup', handleGlobalMouseUp);
+      document.removeEventListener('touchmove', handleGlobalMouseMove as any);
+      document.removeEventListener('touchend', handleGlobalMouseUp);
+    };
+  }, [isDragging, activeThumb, handleDragMove, handleDragEnd]);
 
   const handleWheel = (e: React.WheelEvent) => {
     if (disabled) return;
@@ -324,8 +357,8 @@ export const ProfessionalSlider: React.FC<ProfessionalSliderProps> = ({
         tabIndex={disabled ? -1 : 0}
         onFocus={() => !disabled && setFocusedThumb(thumb.id)}
         onBlur={() => setFocusedThumb(null)}
-        onMouseDown={() => !disabled && handleDragStart(thumb.id)}
-        onTouchStart={() => !disabled && handleDragStart(thumb.id)}
+        onMouseDown={(e) => !disabled && handleDragStart(thumb.id, e)}
+        onTouchStart={(e) => !disabled && handleDragStart(thumb.id, e)}
         role="slider"
       >
         <div className={`
@@ -600,6 +633,15 @@ const QuestionComponent: React.FC<QuestionProps> = ({
               </span>
             </div>
             
+            {currentStep > 1 && (
+              <button
+                onClick={() => window.history.back()}
+                className="flex items-center gap-1 px-2 py-1 text-xs text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-all duration-200"
+              >
+                <ChevronLeft className="w-3 h-3" />
+                Retour
+              </button>
+            )}
           </div>
           
           <div className="mt-2">
@@ -617,11 +659,19 @@ const QuestionComponent: React.FC<QuestionProps> = ({
         </div>
       </div>
 
+      <button className="hover:text-teal-600 p-4
+      bg-white text-gray-600 flex items-center 
+      gap-3 rounded-full mx-auto my-6" onClick={()=>{window.history.back()}}>
+        <HouseIcon />
+        Acceuil
+      </button>
+      
+
       {/* Contenu principal avec animations */}
       <div className="flex-1 flex items-center justify-center p-4 animate-fade-in">
         <div className="w-full max-w-2xl">
           <div className={`bg-white rounded-xl p-5 border ${currentStepColors.border} shadow-lg transition-all duration-500`}>
-            
+
             {/* En-tête de la question */}
             <div className="mb-4">
               <div className="inline-flex items-center gap-0.5 px-1.5 py-0.5 bg-gray-100/80 rounded text-xs text-gray-600 mb-2 animate-slide-in">

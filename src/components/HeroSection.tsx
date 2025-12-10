@@ -65,8 +65,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           {/* Boutons d’action */}
           {showButtons && (
             <div className="z-20 flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
-              <button className="z-50 cursor-pointer bg-[#e44849] rounded-full
-              text-white py-4 px-8 flex items-center flex gap-3 min-w-[200px]">
+              <button 
+                className="z-50 cursor-pointer bg-[#e44849] rounded-full
+                text-white py-4 px-8 flex items-center flex gap-3 min-w-[200px]"
+                onClick={() => window.location.href = '/fast-diagnostic'}
+              >
                 <Calculator className="w-5 h-5" />
                 Calculer mon ROI
               </button>
