@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Calculator, Play, Settings } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { useScrollAnimation } from "./hooks/useScrollAnimation";
-import VideoModal from "@/components/ui/VideoModal";
 import { useVideoModal } from "@/contexts/VideoModalContext";
 
 interface HeroSectionProps {
@@ -25,7 +24,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   maxWidth = "max-w-5xl",
 }) => {
   const [heroRef, heroVisible] = useScrollAnimation(0.1);
-  const { isVideoModalOpen, openVideoModal, closeVideoModal } = useVideoModal();
+  const { openVideoModal } = useVideoModal();
 
   return (
     <section id="hero-section" className="relative flex items-center justify-center overflow-hidden z-0">
@@ -95,16 +94,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         <div className="absolute bottom-32 left-16 w-10 h-10 bg-brand-green rounded-full animate-pulse opacity-50 animation-delay-2000 blur-xl"></div>
         <div className="absolute bottom-20 right-20 w-24 h-24 bg-brand-pink rounded-full animate-pulse opacity-0 animation-delay-500 blur-xl"></div>
       </div>
-
-      {/* Modal vidéo */}
-      <VideoModal 
-        isOpen={isVideoModalOpen}
-        onClose={closeVideoModal}
-        // Option 1: Vidéo locale (prioritaire)
-        videoSrc="/videos/demo.mp4"
-        // Option 2: Vidéo YouTube (fallback si vidéo locale n'existe pas)
-        videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ"
-      />
     </section>
   );
 };

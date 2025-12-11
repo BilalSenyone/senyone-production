@@ -102,7 +102,7 @@ const Blog = () => {
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Catégorie" />
               </SelectTrigger>
-              <SelectContent >
+              <SelectContent className="bg-white">
                 <SelectItem value="all">Toutes catégories</SelectItem>
                 <SelectItem value="automation">Automatisation</SelectItem>
                 <SelectItem value="roi">Calcul du ROI</SelectItem>
@@ -111,7 +111,6 @@ const Blog = () => {
               </SelectContent>
             </Select>
           </SelectGroup>
-          <Input placeholder="Recherchez un article..." />
       </div>
       <div className="px-8 md:px-0 flex flex-col md:flex-row 
       max-w-5xl gap-10 justify-center mx-auto">

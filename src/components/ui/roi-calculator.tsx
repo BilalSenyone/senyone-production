@@ -617,7 +617,7 @@ const QuestionComponent: React.FC<QuestionProps> = ({
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-50/50 via-white to-gray-50/30">
+    <div className="flex flex-col bg-gradient-to-br from-gray-50/50 via-white to-gray-50/30">
       {/* Header avec animations */}
       <div className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-200/50 shadow-sm">
         <div className="max-w-2xl mx-auto px-4 py-2.5">
@@ -665,6 +665,12 @@ const QuestionComponent: React.FC<QuestionProps> = ({
         <HouseIcon />
         Acceuil
       </button>
+
+      <div className="text-center">
+          <h2 className="text-2xl md:text-3xl font-neue-plak font-bold text-gray-700 mb-8">
+            Estimez votre ROI en quelques clics !
+          </h2>
+      </div>
       
 
       {/* Contenu principal avec animations */}

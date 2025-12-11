@@ -43,7 +43,7 @@ const VideoModal: React.FC<VideoModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-10 flex items-center justify-center bg-black/80 backdrop-blur-sm animate-fade-in" style={{ zIndex: 99999 }}>
+    <div className="fixed inset-0 flex items-center justify-center bg-black/80 backdrop-blur-sm animate-fade-in" style={{ zIndex: 9999999 }}>
       <div className="relative w-full max-w-4xl mx-4">
         {/* Bouton de fermeture */} 
         <button

@@ -14,16 +14,16 @@ export const EngagementRSE = () => {
     {
       title: "Développement Durable",
       points: [
-        "Professionnels formés aux technologies d'automatisation",
-        "Programme de stage pour étudiants en informatique",
-        "Partenariat avec universités locales",
+        "Réduction de 60% de la consommation papier chez nos clients",
+        "Solutions cloud optimisées pour réduire l'empreinte carbone",
+        "Télétravail et déplacements minimisés",
       ],
     },
   ];
 
   return (
     <section className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-6">
           <h2 className="text-xl md:text-3xl font-neue-plak font-bold text-gray-900 mb-2">
             Engagements RSE

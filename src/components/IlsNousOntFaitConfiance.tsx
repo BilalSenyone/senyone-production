@@ -16,11 +16,11 @@ export default function IlsNousOntFaitConfiance() {
         </p>
       </div>
       <div className="max-w-5xl mx-auto flex md:gap-24 gap-12 flex-wrap py-10 overflow-hidden">
-        {[uiPathPartner, cbao, atos, orange, wave].map((logo, index) => {
+        {[uiPathPartner, atos, cbao, orange, wave].map((logo, index) => {
           const altText = [
             'UiPath Partner',
-            'CBAO',
             'Atos',
+            'CBAO',
             'Orange',
             'Wave'
           ][index];

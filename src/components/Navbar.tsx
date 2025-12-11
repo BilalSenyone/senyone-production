@@ -161,6 +161,7 @@ const Navbar = () => {
               Nous contacter
             </a>
           </Button>
+          
 
           {/* ✅ Mobile Menu Button */}
           <button
@@ -253,10 +254,10 @@ const Navbar = () => {
               Blog
             </a>
             <Button className="btn-coral rounded-xl text-xs">
-             <a href="/contacts" className="text-white/90 hover:text-white transition-colors font-medium">
-              Nous contacter
-            </a>
-          </Button>
+              <a href="/contacts" className="text-white/90 hover:text-white transition-colors font-medium">
+                Nous contacter
+              </a>
+            </Button>
           </div>
         </div>
         </div>

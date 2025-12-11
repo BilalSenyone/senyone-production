@@ -9,6 +9,43 @@ import {
   Send,
   BarChart3
 } from 'lucide-react';
+import senyoneLogo from '@/assets/logo.svg';
+
+// Custom YouTube icon component
+const YouTubeIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+    viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+    strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" 
+    {...props}>
+    <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/>
+    <path d="m10 15 5-3-5-3z"/>
+  </svg>
+);
+
+const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+  viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+  className="lucide lucide-linkedin-icon lucide-linkedin">
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+  <rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+)
+
+const SlackIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+  viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+  className="lucide lucide-slack-icon lucide-slack">
+    <rect width="3" height="8" x="13" y="2" rx="1.5"/>
+    <path d="M19 8.5V10h1.5A1.5 1.5 0 1 0 19 8.5"/>
+    <rect width="3" height="8" x="8" y="14" rx="1.5"/>
+    <path d="M5 15.5V14H3.5A1.5 1.5 0 1 0 5 15.5"/>
+    <rect width="8" height="3" x="14" y="13" rx="1.5"/>
+    <path d="M15.5 19H14v1.5a1.5 1.5 0 1 0 1.5-1.5"/>
+    <rect width="8" height="3" x="2" y="8" rx="1.5"/>
+    <path d="M8.5 5H10V3.5A1.5 1.5 0 1 0 8.5 5"/></svg>
+)
+
 
 // --- Types ---
 interface IconProps {
@@ -75,13 +112,14 @@ const ProcessorHub = () => {
                Shadow top-left (dark) to represent shadow cast by the edge.
             */}
             <div className="relative z-10 transform translate-y-[-4px]">
-              <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-300 select-none"
+              {/*<h3 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-300 select-none"
                   style={{ 
                     textShadow: '1px 1px 0px rgba(255,255,255,1), -1px -1px 1px rgba(0,0,0,0.1)'
                   }}
-              >
+              >gr
                 Senyone
-              </h3>
+              </h3>*/}
+              <img src={senyoneLogo} className='h-14' />
             </div>
 
             {/* Activity Indicator (The "Scanner" or "Pulse") */}
@@ -155,10 +193,10 @@ const AutomationGraphic: React.FC = () => {
   const inputs = [
     { Icon: Mail, color: 'text-orange-500', bg: 'bg-orange-50', x: -350, y: 100, delay: 3.2 },
     { Icon: FileSpreadsheet, color: 'text-green-600', bg: 'bg-green-50', x: -320, y: -40, delay: 2.5 },
-    { Icon: FileText, color: 'text-red-500', bg: 'bg-red-50', x: -280, y: 50, delay: 1.2 }
-    /*{ Icon: Youtube, color: 'text-red-600', bg: 'bg-red-50', x: -200, y: 150, delay: 0.8 },
-    { Icon: Linkedin, color: 'text-blue-700', bg: 'bg-blue-50', x: -180, y: -150, delay: 1.8 },
-    { Icon: Slack, color: 'text-purple-600', bg: 'bg-purple-50', x: -250, y: -100, delay: 0 },*/
+    { Icon: FileText, color: 'text-red-500', bg: 'bg-red-50', x: -280, y: 50, delay: 1.2 },
+    { Icon: YouTubeIcon, color: 'text-red-600', bg: 'bg-red-50', x: -200, y: 150, delay: 0.8 },
+    { Icon: LinkedinIcon, color: 'text-blue-700', bg: 'bg-blue-50', x: -180, y: -150, delay: 1.8 },
+    { Icon: SlackIcon, color: 'text-purple-600', bg: 'bg-purple-50', x: -250, y: -100, delay: 0 }
   ];
 
   // Data for right side outputs
