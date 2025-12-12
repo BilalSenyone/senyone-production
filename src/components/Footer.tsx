@@ -27,7 +27,7 @@ const Footer = () => {
             <ul className="space-y-3 text-xs">
               <li>
                 <a 
-                  href="#" 
+                  href="/Nos-ressources" 
                   className="text-white hover:text-gray-300 transition-colors "
                 >
                   Nos ressources
@@ -35,7 +35,7 @@ const Footer = () => {
               </li>
               <li>
                 <a 
-                  href="#" 
+                  href="/Nos-solutions" 
                   className="text-white hover:text-gray-300 transition-colors "
                 >
                   Nos solutions
@@ -43,7 +43,7 @@ const Footer = () => {
               </li>
               <li>
                 <a 
-                  href="#" 
+                  href="/blog" 
                   className="text-white hover:text-gray-300 transition-colors "
                 >
                   Blog

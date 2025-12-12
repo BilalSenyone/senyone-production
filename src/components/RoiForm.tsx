@@ -95,9 +95,13 @@ export default function ROIForm() {
           </div>
         </div>
 
+        
         <button className="mt-6 bg-red-500 text-white rounded-lg py-3 hover:bg-red-600 transition">
+          <a href="/fast-diagnostic">
           Obtenir un rapport détaillé
+          </a>
         </button>
+
       </div>
     </div>
   );
