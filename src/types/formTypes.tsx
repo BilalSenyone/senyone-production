@@ -20,6 +20,9 @@ export function calculateSavings (answers?: Record<string, QuestionAnswer>) {
     const etpLibere = automatableHours * annualHours;
 
     console.log({
+      hoursPerWeek: hoursPerWeek,
+      costPerHour: costPerHour,
+      automationRate: automationRate,
       weeklyCost: Math.round(weeklyCost),
       annualCost: Math.round(annualCost),
       automatableHours: Math.round(automatableHours),
@@ -33,6 +36,9 @@ export function calculateSavings (answers?: Record<string, QuestionAnswer>) {
       etpLibere: etpLibere
     })
     return {
+      hoursPerWeek: hoursPerWeek,
+      costPerHour: costPerHour,
+      automationRate: automationRate,
       weeklyCost: Math.round(weeklyCost),
       annualCost: Math.round(annualCost),
       automatableHours: Math.round(automatableHours),

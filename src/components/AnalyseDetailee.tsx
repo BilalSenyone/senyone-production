@@ -56,17 +56,51 @@ export const DetailedAnalysis: React.FC<DetailedAnalysisProps> = ({
     emailjs.init(PUBLIC_KEY);
   }, [PUBLIC_KEY]);
 
-  // Mettre à jour la fonction handleSaveCompanyInfo
+  // Vérifie la validité des informations de l'entreprise
+  const validateCompanyInfo = (info: CompanyInfo): { isValid: boolean; error?: string } => {
+    if (!info.email || typeof info.email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(info.email)) {
+      return { isValid: false, error: 'Veuillez fournir une adresse email valide.' };
+    }
+    
+    if (!info.nomCompletPerson || typeof info.nomCompletPerson !== 'string' || info.nomCompletPerson.trim().length < 2) {
+      return { isValid: false, error: 'Veuillez fournir un nom complet valide.' };
+    }
+    
+    if (!info.companyName || typeof info.companyName !== 'string' || info.companyName.trim().length < 2) {
+      return { isValid: false, error: 'Veuillez fournir un nom d\'entreprise valide.' };
+    }
+    
+    if (!info.phone || typeof info.phone !== 'string' || !/^[\d\s+.-]{10,20}$/.test(info.phone)) {
+      return { isValid: false, error: 'Veuillez fournir un numéro de téléphone valide.' };
+    }
+    
+    return { isValid: true };
+  };
+
   const handleSendCompanyInfo = async (info: CompanyInfo) => {
+    // Validation des données
+    const validation = validateCompanyInfo(info);
+    if (!validation.isValid) {
+      toast({
+        variant: "destructive",
+        title: "Erreur de validation",
+        description: validation.error || "Une erreur inconnue est survenue.",
+      });
+      return;
+    }
+
     setCompanyInfo(info);
-    localStorage.setItem('senyone_company_info', JSON.stringify(info));
+    setIsDownloading(true);
     
     try {
-      toast({
-            title: "Succès",
-            description: "Votre rapport a été envoyé par email avec succès !",
-            variant: "default",
-      });
+      const dateAujourdhui = new Date().toLocaleString('fr-FR', { 
+        day: '2-digit', 
+        month: '2-digit', 
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false 
+      }).replace(/\//g, '-').replace(',', ' ');
         // Envoyer l'email via EmailJS
         const templateParams = {
           to_email: info.email,
@@ -76,14 +110,25 @@ export const DetailedAnalysis: React.FC<DetailedAnalysisProps> = ({
           roi: savings.roi,
           message: `Nouvelle demande de rapport d'analyse d'automatisation de la part de ${info.nomCompletPerson} - ${info.companyName}`,
           from_name: "Senyone Automatisation",
-          reply_to: "contact@senyone.com",
+          reply_to: info.email,
+          volume: savings.hoursPerWeek,
+          cout: savings.costPerHour,
+          taux: savings.automationRate,
+          date_simulation: dateAujourdhui,
+          economiesPotentielles: savings.annualSavings,
+          heuresAutomatisables: savings.automatableHours,
+          etpLibere: savings.etpLibere,
+          roiNet: savings.roiNet,
+          pourcentageROI: savings.roi,
+          periodeRetour: savings.paybackPeriod
         };
+
         console.log(templateParams)
         await emailjs.send(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        templateParams,
-        PUBLIC_KEY
+          SERVICE_ID,
+          TEMPLATE_ID,
+          templateParams,
+          PUBLIC_KEY
         );
         // Télécharger le PDF après l'envoi de l'email
         setIsDownloading(true);
@@ -108,31 +153,6 @@ export const DetailedAnalysis: React.FC<DetailedAnalysisProps> = ({
         setIsDownloading(false);
     }
     };
-
-  const handleDownloadPDF = async () => {
-    if (!companyInfo) {
-      setAlertType('download');
-      setShowCompanyInfoModal(true);
-      setShowAlert(false);
-      return;
-    }
-    
-    setIsDownloading(true);
-    
-    try {
-      await onDownloadPDF(answers, companyInfo);
-      setDownloadSuccess(true);
-      setTimeout(() => {
-        setDownloadSuccess(false);
-        setShowAlert(false);
-      }, 3000);
-    } catch (error) {
-      console.error('Erreur lors du téléchargement:', error);
-      setShowAlert(false);
-    } finally {
-      setIsDownloading(false);
-    }
-  };
 
   const formatCurrency = (amount: number) => {
     return amount.toLocaleString('fr-FR') + ' FCFA';
@@ -551,7 +571,11 @@ export const DetailedAnalysis: React.FC<DetailedAnalysisProps> = ({
         }}
         title={emailSent ? "Rapport envoyé !" : "Générer le rapport"}
         description="Pour obtenir votre rapport par mail vous devez entrez les informations de votre entreprise"
-        onConfirm={handleDownloadPDF}
+        onConfirm={() => {
+          setShowCompanyInfoModal(true)
+          setAlertType('download');
+          setShowAlert(false);
+        }}
         confirmText={emailSent ? "Compris" : "Saisir les informations"}
         cancelText={emailSent ? "Fermer" : "Annuler"}
         isLoading={emailSending}
