@@ -1,8 +1,8 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import Footer from "@/components/Footer";
-import QuestionComponent from "@/components/ui/roi-calculator";
-
+// import QuestionComponent from "@/components/ui/roi-calculator";
+import Question from "@/components/QuestionComponent";
 
 const RoiDiagPage = () => {
   return (
@@ -14,8 +14,10 @@ const RoiDiagPage = () => {
         description="Veuillez répondre aux questions afin d'avoir votre diagnostique gratuit" 
         showButtons={false}
         />
-      </div>*/}
+      </div>
       <QuestionComponent />
+      */}
+      <Question />
       <Footer />
     </div>
   );
