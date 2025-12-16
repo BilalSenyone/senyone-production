@@ -44,6 +44,7 @@ import React, { useEffect, useState } from 'react';
 import logoPng from '@/assets/logo.svg';
 import { DetailedAnalysis } from './AnalyseDetailee';
 import { calculateSavings as calculateSavingsUtil, type QuestionAnswer } from '@/types/formTypes';
+import { formatNumber, formatCurrency } from '@/utils/formatters';
 
 // Utilitaire : charger une image (URL) et la convertir en data-URI (base64)
 async function getImageDataUrl(url: string): Promise<string> {
@@ -2226,8 +2227,8 @@ const ThreeQuestionCalculator: React.FC = () => {
                         <div className="text-xs text-white/80 mb-0.5">{metric.label}</div>
                         <div className="flex items-baseline gap-0.5">
                           <div className={`text-sm font-bold ${metric.color}`}>
-                            {typeof metric.value === 'number' && metric.value > 1000 
-                              ? metric.value.toLocaleString() 
+                            {typeof metric.value === 'number' 
+                              ? formatNumber(metric.value)
                               : metric.value}
                           </div>
                           <div className="text-xs text-white/90">{metric.unit}</div>
@@ -2273,11 +2274,11 @@ const ThreeQuestionCalculator: React.FC = () => {
                     </div>
                     <div className="text-center">
                       <div className="text-xl font-bold gradient-text-secondary mb-0.5">
-                        {savings.weeklySavings.toLocaleString()}
+                        {formatNumber(savings.weeklySavings)}
                       </div>
                       <div className="text-gray-600 text-xs">FCFA par semaine</div>
                       <div className="text-xs gradient-text-secondary mt-0.5">
-                        Soit {savings.annualSavings.toLocaleString()} FCFA par an
+                        Soit {formatCurrency(savings.annualSavings)} par an
                       </div>
                     </div>
                   </div>
@@ -2294,7 +2295,7 @@ const ThreeQuestionCalculator: React.FC = () => {
                     </div>
                     <div className="text-center">
                       <div className="text-xl font-bold text-[#1E1E1E] mb-0.5">
-                        {savings.annualSavings.toLocaleString().split(',')[0]}
+                        {formatNumber(savings.annualSavings).split(',')[0]}
                       </div>
                       <div className="text-gray-600 text-xs">FCFA par an</div>
                       <div className="text-xs text-[#2a2a2a] mt-0.5">

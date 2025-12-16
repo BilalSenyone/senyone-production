@@ -1,5 +1,6 @@
 import { useState } from "react";
-import logo from "../assets/SENYONE-09.svg"; // Ton logo
+import logo from "../assets/SENYONE-09.svg"; 
+import linkedin from "@/assets/linkedin.png"
 
 const Footer = () => {
   return (
@@ -156,6 +157,11 @@ const Footer = () => {
               <li>
                 <a href="mailto:contact@senyone.sn" className="text-[#E44849] hover:text-gray-300 transition-colors font-inter ">
                   contact@senyone.sn
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <img src={linkedin} alt="" />
                 </a>
               </li>
             </ul>

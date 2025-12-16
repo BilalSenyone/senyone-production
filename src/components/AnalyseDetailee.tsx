@@ -133,7 +133,7 @@ export const DetailedAnalysis: React.FC<DetailedAnalysisProps> = ({
     };
 
   const formatCurrency = (amount: number) => {
-    return amount.toLocaleString('fr-FR') + ' FCFA';
+    return new Intl.NumberFormat('fr-FR').format(amount) + ' FCFA';
   };
 
   return (
