@@ -785,15 +785,49 @@ const QuestionComponent: React.FC<QuestionProps> = ({
                 
                 
                 <div className="text-center mb-4 relative">
-                  <div className="relative">
-                    <div className="inline-flex flex-col items-center gap-2">
-                      <div className="relative">
-                        <div className="text-2xl font-black gradient-text animate-float">
+                  <div className="relative w-full">
+                    <div className="flex flex-col items-center gap-2 w-full">
+                      <div className="relative flex items-center justify-center gap-4 w-full">
+                        <button 
+                          type="button"
+                          onClick={() => {
+                            const newValue = Math.max(min, (inputValue as number) - stepSize);
+                            handleChange(newValue);
+                          }}
+                          className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 active:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00929E]"
+                          aria-label="Diminuer"
+                        >
+                          <span className="text-xl font-bold text-gray-700">-</span>
+                        </button>
+                        
+                        <div className="text-2xl md:text-3xl font-black gradient-text animate-float min-w-[60px] text-center">
                           {inputValue as number || defaultValue} {id === 'volume' ? 'h' : '%'}
                         </div>
+                        
+                        <button 
+                          type="button"
+                          onClick={() => {
+                            const newValue = Math.min(max, (inputValue as number) + stepSize);
+                            handleChange(newValue);
+                          }}
+                          className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 active:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00929E]"
+                          aria-label="Augmenter"
+                        >
+                          <span className="text-xl font-bold text-gray-700">+</span>
+                        </button>
                       </div>
                       
-                      
+                      {/* <div className="relative">
+                        <div className="inline-flex flex-col items-center gap-2">
+                          <div className="relative">
+                            <div className="text-2xl font-black gradient-text animate-float">
+                              {inputValue as number || defaultValue} {id === 'volume' ? 'h' : '%'}
+                            </div>
+                          </div>
+                          
+                          
+                        </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
