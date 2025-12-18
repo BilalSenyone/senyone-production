@@ -1,4 +1,6 @@
 import HeroSection from "@/components/HeroSection";
+import Footer from "@/components/Footer";
+import {WhatsAppWidget} from "@/components/WhatsAppWidget";
 
 
 /**
@@ -39,6 +41,8 @@ export default function PolitiqueConfidentialite() {
         <div className="text-start mb-10 flex flex-col md:mx-auto max-w-5xl mx-4">
           {/* CONTENU */}
         </div>
+      <Footer />
+      <WhatsAppWidget />
     </div>
   );
 }

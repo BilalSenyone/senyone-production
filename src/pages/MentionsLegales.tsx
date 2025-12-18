@@ -1,5 +1,6 @@
 import HeroSection from "@/components/HeroSection";
-
+import Footer from "@/components/Footer";
+import { WhatsAppWidget } from "@/components/WhatsAppWidget";
 /**
  * Cette page est une page de type article. Pas besoin de beaucoup de CSS ou de styles/animation 
  * 
@@ -38,6 +39,8 @@ export default function MentionsLegales() {
         <div className="text-start mb-10 flex flex-col md:mx-auto max-w-5xl mx-4">
           {/* CONTENU */}
         </div>
+      <Footer />
+      <WhatsAppWidget />
     </div>
   );
 }
