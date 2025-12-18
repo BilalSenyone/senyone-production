@@ -1445,27 +1445,34 @@ const ThreeQuestionCalculator: React.FC = () => {
     // Début du contenu après l'en-tête
     let yPos = separatorY + 15;
 
-    // Résumé exécutif
-    pdf.setFontSize(11);
-    pdf.setFont('helvetica', 'bold');
-    pdf.setTextColor(parseInt(colors.dark.slice(1, 3), 16), 
-                    parseInt(colors.dark.slice(3, 5), 16), 
-                    parseInt(colors.dark.slice(5, 7), 16));
-    pdf.text('RÉSUMÉ EXÉCUTIF', 105, yPos, { align: 'center' });
-    yPos += 5;
-
-    pdf.setFontSize(9);
-    pdf.setFont('helvetica', 'normal');
-    const summaryText = companyInfo
-      ? `Cette analyse démontre que l'automatisation des processus répétitifs pourrait générer des économies annuelles de ${savings.annualSavings.toLocaleString('fr-FR')} FCFA pour ${companyInfo.companyName}, avec un retour sur investissement de ${savings.roi}% et un délai de rentabilité de ${savings.paybackPeriod} mois.`
-      : `Cette analyse démontre que l'automatisation des processus répétitifs pourrait générer des économies annuelles de ${savings.annualSavings.toLocaleString('fr-FR')} FCFA, avec un retour sur investissement de ${savings.roi}% et un délai de rentabilité de ${savings.paybackPeriod} mois.`;
-    
-    const summaryLines = pdf.splitTextToSize(summaryText, 150);
-    summaryLines.forEach((line: string) => {
-      pdf.text(line, 105, yPos, { align: 'center' });
-      yPos += 5;
-    });
+    // Ajouter de l'espace avant le résumé
     yPos += 10;
+
+   const marginX = 20;
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const usableWidth = pageWidth - marginX * 2;
+
+    const normalizeText = (text: string) => text.normalize('NFC');
+
+    const lines = [
+      normalizeText(`Cette analyse démontre que l'automatisation des processus`),
+      normalizeText(`répétitifs pourrait générer des économies annuelles de ${formatCurrency(savings.annualSavings)}`),
+      normalizeText(`pour ${companyInfo?.companyName || 'votre entreprise'}, avec un retour sur investissement`),
+      normalizeText(`de ${formatCurrency(savings.roi)} et un délai de rentabilité de ${savings.paybackPeriod} mois.`)
+    ];
+
+    lines.forEach((line) => {
+      const wrapped = pdf.splitTextToSize(line, usableWidth);
+
+      pdf.text(wrapped, marginX, yPos, {
+        align: 'center',
+        maxWidth: usableWidth
+      });
+
+      yPos += wrapped.length * 6;
+    });
+
+    yPos += 10; // Espace après le résumé
 
     // Vérifier si on doit créer une nouvelle page
     if (yPos > 250) {
