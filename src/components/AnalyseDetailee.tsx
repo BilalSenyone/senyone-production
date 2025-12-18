@@ -173,7 +173,7 @@ export const DetailedAnalysis: React.FC<DetailedAnalysisProps> = ({
                     className={`
                       flex items-center gap-1.5 px-2 py-1.5 rounded text-xs font-medium transition-all duration-200
                       ${activeTab === tab.id
-                        ? 'glass-effect text-[#ffffff]'
+                        ? 'bg-white text-[#00929E]'
                         : 'text-white/90 hover:bg-white/10'
                       }
                     `}
@@ -193,11 +193,11 @@ export const DetailedAnalysis: React.FC<DetailedAnalysisProps> = ({
                   <div className="glass-border p-4 card-3d">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="glass-border w-6 h-6 flex items-center justify-center bg-[#e6f7f9]">
-                        <Clock className="w-3.5 h-3.5 text-[#00929E]" />
+                        <Clock className="w-3.5 h-3.5 text-gray-900" />
                       </div>
                       <div>
-                        <div className="text-xs font-semibold gradient-text">Temps automatisable</div>
-                        <div className="text-[10px] text-[#007a85]">Gain de productivité</div>
+                        <div className="text-xs font-semibold text-gray-900">Temps automatisable</div>
+                        <div className="text-[10px] text-gray-900">Gain de productivité</div>
                       </div>
                     </div>
                     <div className="flex items-baseline gap-1">
@@ -206,7 +206,7 @@ export const DetailedAnalysis: React.FC<DetailedAnalysisProps> = ({
                       </span>
                       <span className="text-sm text-[#007a85]">heures</span>
                     </div>
-                    <div className="mt-2 text-xs gradient-text">
+                    <div className="mt-2 text-xs text-gray-900">
                       Heures par année
                     </div>
                   </div>
@@ -217,15 +217,15 @@ export const DetailedAnalysis: React.FC<DetailedAnalysisProps> = ({
                         <DollarSign className="w-3.5 h-3.5 gradient-text-secondary" />
                       </div>
                       <div>
-                        <div className="text-xs font-semibold gradient-text-secondary">Économies annuelles</div>
-                        <div className="text-[10px] text-[#d93c3d]">Projection sur 12 mois</div>
+                        <div className="text-xs font-semibold text-gray-900">Économies annuelles</div>
+                        <div className="text-[10px] text-gray-900">Projection sur 12 mois</div>
                       </div>
                     </div>
                     <div className="flex items-baseline gap-1">
-                      <span className="text-xl font-bold gradient-text-secondary">
+                      <span className="text-xl font-bold text-[#007a85]">
                         {formatCurrency(savings.annualSavings).split('.')[0]}
                       </span>
-                      <span className="text-sm text-[#d93c3d]">FCFA/an</span>
+                      <span className="text-sm text-[#007a85]">annuel</span>
                     </div>
                   </div>
                   
@@ -240,10 +240,10 @@ export const DetailedAnalysis: React.FC<DetailedAnalysisProps> = ({
                       </div>
                     </div>
                     <div className="flex items-baseline gap-1">
-                      <span className="text-xl font-bold text-[#1E1E1E]">
+                      <span className="text-xl font-bold text-[#007a85]">
                         {formatCurrency(savings.roiNet)}
                       </span>
-                      <span className="text-sm text-[#363636]">annuel</span>
+                      <span className="text-sm text-[#007a85]">annuel</span>
                     </div>
                     <div className="mt-2 text-xs text-[#2a2a2a]">
                       Rentable en <span className="font-bold">{savings.paybackPeriod} mois</span>
@@ -278,11 +278,11 @@ export const DetailedAnalysis: React.FC<DetailedAnalysisProps> = ({
                     <div className="space-y-1">
                       <div className="flex justify-between text-xs">
                         <span className="font-medium text-gray-700">Retour sur investissement (ROI)</span>
-                        <span className="font-bold gradient-text-secondary">{savings.roi}%</span>
+                        <span className="font-bold gradient-text ">{savings.roi}%</span>
                       </div>
                       <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                         <div 
-                          className="h-full bg-gradient-to-r from-[#E44849] to-[#d93c3d] rounded-full transition-all duration-300 ease-out"
+                          className="h-full bg-gradient-to-r from-[#00929E] to-[#007a85] rounded-full transition-all duration-300 ease-out"
                           style={{ width: `${Math.min(savings.roi, 100)}%` }}
                         >
                           <div className="absolute inset-0"></div>
@@ -506,7 +506,7 @@ export const DetailedAnalysis: React.FC<DetailedAnalysisProps> = ({
                       ? 'bg-gray-400 cursor-not-allowed' 
                       : emailSent 
                         ? 'bg-green-500' 
-                        : 'bg-gradient-to-r from-[#E44849] to-[#d93c3d] hover:opacity-90 animate-glow'
+                        : 'bg-gradient-to-r from-[#00929E] to-[#007a85] hover:opacity-90 animate-glow'
                   }`}
                 >
                   {emailSent ? (
@@ -562,6 +562,3 @@ export const DetailedAnalysis: React.FC<DetailedAnalysisProps> = ({
     </>
   );
 };
-function navigateToHome() {
-  throw new Error("Function not implemented.");
-}

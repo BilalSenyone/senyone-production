@@ -249,25 +249,12 @@ const GlobalStyles = () => {
 };
 
 const QuestionComponent: React.FC<QuestionProps> = ({ 
-  question, 
-  onAnswerChange, 
-  currentAnswer,
-  currentStep,
-  totalSteps,
-  onNext,
-  onPrev
+  question, onAnswerChange, currentAnswer,currentStep,
+  totalSteps, onNext, onPrev
 }) => {
   const {
-    id,
-    libelle,
-    type,
-    helper,
-    placeholder = "",
-    plage = [],
-    defaultValue,
-    required = false,
-    step: questionStep,
-    note
+    id,libelle,type,helper,
+    placeholder = "",plage = [],defaultValue,required = false,step: questionStep,note
   } = question;
 
   const [inputValue, setInputValue] = useState<QuestionAnswer>(currentAnswer !== undefined ? currentAnswer : defaultValue);
@@ -429,18 +416,7 @@ const QuestionComponent: React.FC<QuestionProps> = ({
                           <span className="text-xl font-bold text-gray-700">+</span>
                         </button>
                       </div>
-                      
-                      {/* <div className="relative">
-                        <div className="inline-flex flex-col items-center gap-2">
-                          <div className="relative">
-                            <div className="text-2xl font-black gradient-text animate-float">
-                              {inputValue as number || defaultValue} {id === 'volume' ? 'h' : '%'}
-                            </div>
-                          </div>
-                          
-                          
-                        </div>
-                      </div> */}
+                     
                     </div>
                   </div>
                 </div>
@@ -448,104 +424,37 @@ const QuestionComponent: React.FC<QuestionProps> = ({
             </div>
             
             <div className="relative px-2">
-              <div className="glass-border p-4 rounded-2xl">
+              <div className=" p-4 rounded-2xl">
                 <div className="relative h-2 mb-6">
-                  <div className="absolute inset-0 bg-gradient-to-r from-gray-200/50 via-gray-300/50 to-gray-200/50 rounded-full"></div>
-                  
-                  <div 
-                    className="absolute h-full bg-gradient-to-r from-[#00929E] via-[#00a8b5] to-[#007a85] rounded-full transition-all duration-300 ease-out overflow-hidden"
-                    style={{ width: `${percentage}%` }}
-                  >
-                    <div className="absolute inset-0 animate-shimmer"></div>
-                  </div>
-                  
-                  <div 
-                    className="absolute top-1/2 -translate-y-1/2 cursor-grab active:cursor-grabbing transform transition-transform duration-200"
-                    style={{ 
-                      left: `${percentage}%`,
-                      marginLeft: '-12px'
-                    }}
-                    onMouseDown={(e) => {
-                      setIsDragging(true);
-                      const slider = e.currentTarget.parentElement?.parentElement;
-                      if (!slider) return;
-                      
-                      const startX = e.clientX;
-                      const startValue = weeklyHours;
-                      const sliderRect = slider.getBoundingClientRect();
-                      const pixelToValue = (max - min) / sliderRect.width;
-                      
-                      setRippleEffect({
-                        x: e.clientX - sliderRect.left,
-                        y: e.clientY - sliderRect.top,
-                        active: true
-                      });
-                      
-                      const handleMouseMove = (moveEvent: MouseEvent) => {
-                        const deltaX = moveEvent.clientX - startX;
-                        const deltaValue = deltaX * pixelToValue;
-                        const newValue = Math.max(min, Math.min(max, Math.round(startValue + deltaValue)));
-                        handleChange(newValue);
-                      };
-                      
-                      const handleMouseUp = () => {
-                        setIsDragging(false);
-                        document.removeEventListener('mousemove', handleMouseMove);
-                        document.removeEventListener('mouseup', handleMouseUp);
-                      };
-                      
-                      document.addEventListener('mousemove', handleMouseMove);
-                      document.addEventListener('mouseup', handleMouseUp);
-                    }}
-                    onMouseEnter={() => setGlowIntensity(0.6)}
-                    onMouseLeave={() => setGlowIntensity(0.3)}
-                  >
-                    <div className="relative">
-                      <div className="relative w-5 h-5 rounded-full bg-gradient-to-br from-white to-gray-100 border-2 border-[#00929E]">
-                        <div className="absolute inset-1 rounded-full bg-gradient-to-br from-[#00929E] to-[#007a85] animate-pulse">
-                          <div className="absolute inset-0.5 rounded-full bg-gradient-to-br from-white to-white/80"></div>
-                        </div>
+                    <div className="w-full">
+                      {/* Label */}
+                      <div className="flex justify-between mb-2 text-sm text-gray-600">
+                        <span>{min} {id === 'volume' ? 'h' : '%'}</span>
+                        
+                        <span>{max} {id === 'volume' ? 'h' : '%'}</span>
                       </div>
+
+                      {/* Slider */}
+                      <input
+                        type="range"
+                        min={min}
+                        max={max}
+                        value={weeklyHours}
+                        onChange={(e) => handleChange(Number(e.target.value))}
+                        className="w-full h-2 rounded-lg appearance-none cursor-pointer
+                                  bg-gray-200
+                                  accent-[#00929E]"
+                        style={{
+                          background: `linear-gradient(
+                            to right,
+                            #00929E 0%,
+                            #00929E ${percentage}%,
+                            #e5e7eb ${percentage}%,
+                            #e5e7eb 100%
+                          )`
+                        }}
+                      />
                     </div>
-                  </div>
-                  
-                  <div className="relative h-5 mt-2">
-                    {[min, Math.round((min + max) / 2), max].map((value, index) => {
-                      const isActive = Math.abs(weeklyHours - value) < 5;
-                      return (
-                        <div
-                          key={value}
-                          className="absolute top-0 transform -translate-x-1/2"
-                          style={{
-                            left: `${((value - min) / (max - min)) * 100}%`,
-                          }}
-                        >
-                          <div className="flex flex-col items-center">
-                            <div className="relative mt-1">
-                              <div 
-                                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                                  isActive 
-                                    ? 'bg-gradient-to-br from-[#00929E] to-[#007a85] scale-125' 
-                                    : 'bg-gray-400'
-                                }`}
-                              >
-                              </div>
-                            </div>
-                            
-                            <span 
-                              className={`text-xs mt-1 transition-all duration-300 ${
-                                isActive 
-                                  ? 'text-[#00929E] font-bold' 
-                                  : 'text-gray-500'
-                              }`}
-                            >
-                              {value}{id === 'volume' ? 'h' : '%'}
-                            </span>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
                 </div>
               </div>
             </div>
@@ -598,22 +507,6 @@ const QuestionComponent: React.FC<QuestionProps> = ({
                 </div>
               </div>
             </div>
-            
-            {isFocused && (
-              <div className="glass-effect-primary rounded-lg p-3 animate-fade-in">
-                <div className="flex items-center gap-2 text-xs gradient-text">
-                  <div className="glass-border w-6 h-6 flex items-center justify-center bg-gradient-to-br from-[#00929E] to-[#007a85]">
-                    <Calculator className="w-3.5 h-3.5 text-white" />
-                  </div>
-                  <div>
-                    <span className="font-bold">Formule : Salaire brut chargé ÷ 1820 heures</span>
-                    <div className="mt-0.5 text-xs text-[#007a85]">
-                      Cette formule inclut tous les coûts salariaux
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
         );
       }
@@ -655,9 +548,9 @@ const QuestionComponent: React.FC<QuestionProps> = ({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <div className="relative">
-                    <div className="glass-border">
-                      <div className="w-6 h-6 flex items-center justify-center bg-gradient-to-br from-[#00929E] to-[#007a85] rounded depth-3d-inner">
-                        <Zap className="w-3.5 h-3.5 text-white" />
+                    <div className="">
+                      <div className="w-6 h-6 flex items-center justify-center">
+                        <img src={logoPng} alt="" />
                       </div>
                     </div>
                   </div>
@@ -666,7 +559,7 @@ const QuestionComponent: React.FC<QuestionProps> = ({
                       SENYONE<span className="text-[#00929E]">.</span>
                     </span>
                     <div className="text-[9px] text-gray-600 mt-0.5 font-medium tracking-wider">
-                      AUTOMATION SOLUTIONS
+                      Think. Automate. Rework.
                     </div>
                   </div>
                 </div>
@@ -703,7 +596,8 @@ const QuestionComponent: React.FC<QuestionProps> = ({
 
         <div className="flex-1 flex items-center justify-center p-4 depth-3d">
           <div className="w-full max-w-2xl transform perspective-1000">
-            <div className={`glass-border rounded-lg p-5 bg-white/90 backdrop-blur-sm transition-all duration-300 card-3d ${isFocused ? 'scale-[1.02]' : 'scale-100'} glass-border-hover`}>
+            <div className={`glass-border rounded-lg p-5 bg-white/90 backdrop-blur-sm transition-all duration-300 
+              `}>
               <div className="mb-6 depth-3d-inner">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
@@ -745,7 +639,7 @@ const QuestionComponent: React.FC<QuestionProps> = ({
                 {renderInputField()}
               </div>
 
-              <div className="relative rounded-lg p-4 glass-effect-primary depth-3d-inner card-3d">
+              <div className="relative rounded-lg p-4 glass-effect-primary">
                 <div className="relative flex items-start gap-3">
                   <div className="flex-shrink-0">
                     <div className="relative">
@@ -900,7 +794,7 @@ const ThreeQuestionCalculator: React.FC = () => {
       titre: 'Coût horaire moyen',
       libelle: 'Quel est le coût horaire moyen de votre équipe ?',
       type: 'number',
-      helper: 'Pour calculer le coût réel, prenez en compte le salaire brut chargé (incluant les charges patronales) divisé par 1820 heures travaillées par an.',
+      helper: 'Pour calculer le coût réel, prenez en compte le salaire brut chargé (incluant les charges patronales) divisé par 1 820 heures travaillées par an.',
       placeholder: 'Exemple : Le coût horaire est environ 35 FCFA',
       defaultValue: 35,
       required: true,
@@ -927,6 +821,7 @@ const ThreeQuestionCalculator: React.FC = () => {
   const navigateToHome = () => {
     window.location.href = '/';
   };
+
   const generatePDF = async (customAnswers: Record<string, QuestionAnswer>, companyInfo?: CompanyInfo) => {
     const savings = calculateSavingsUtil(customAnswers);
     const pdf = new jsPDF('p', 'mm', 'a4');
@@ -1731,8 +1626,10 @@ const ThreeQuestionCalculator: React.FC = () => {
           <div className="w-full max-w-2xl relative">
             <div className="glass-border p-4 card-3d">
               <div className="text-center mb-4">
-                <div className="inline-flex items-center justify-center w-12 h-12 glass-border bg-gradient-to-br from-[#00929E] to-[#007a85] rounded-full mb-3 mx-auto">
-                  <Sparkles className="w-5 h-5 text-white" />
+                <div className="inline-flex items-center justify-center 
+                glass-border p-4
+                bg-gradient-to-br from-[#00929E] to-[#007a85] rounded-full mb-3 mx-auto">
+                  <img src={logoPng} alt="" className='w-12 h-12'/>
                 </div>
                 <h1 className="text-lg font-bold gradient-text mb-1.5">
                   Calculateur d'Automatisation SENYONE
@@ -1863,7 +1760,7 @@ const ThreeQuestionCalculator: React.FC = () => {
                         <Clock className="w-3.5 h-3.5 text-[#00929E]" />
                       </div>
                       <div>
-                        <h3 className="font-bold gradient-text text-xs">Temps optimisé</h3>
+                        <h3 className="font-bold text-gray-600 text-xs">Temps optimisé</h3>
                         <p className="text-xs text-gray-600">Gain de productivité</p>
                       </div>
                     </div>
@@ -1879,19 +1776,19 @@ const ThreeQuestionCalculator: React.FC = () => {
                   <div className="glass-border p-3 card-3d">
                     <div className="flex items-center gap-2 mb-2">
                       <div className="glass-border p-1.5 bg-[#fdeaea] rounded">
-                        <DollarSign className="w-3.5 h-3.5 gradient-text-secondary" />
+                        <DollarSign className="w-3.5 h-3.5 gradient-text" />
                       </div>
                       <div>
-                        <h3 className="font-bold gradient-text-secondary text-xs">Économies financières</h3>
+                        <h3 className="font-bold text-gray-600 text-xs">Économies financières</h3>
                         <p className="text-xs text-gray-600">Gains hebdomadaires</p>
                       </div>
                     </div>
                     <div className="text-center">
-                      <div className="text-xl font-bold gradient-text-secondary mb-0.5">
-                        {formatNumber(savings.weeklySavings)}
+                      <div className="text-xl font-bold gradient-text mb-0.5">
+                        {formatCurrency(savings.weeklySavings)}
                       </div>
-                      <div className="text-gray-600 text-xs">FCFA par semaine</div>
-                      <div className="text-xs gradient-text-secondary mt-0.5">
+                      <div className="text-gray-600 text-xs">par semaine</div>
+                      <div className="text-xs gradient-text mt-0.5">
                         Soit {formatCurrency(savings.annualSavings)} par an
                       </div>
                     </div>
@@ -1900,19 +1797,19 @@ const ThreeQuestionCalculator: React.FC = () => {
                   <div className="glass-border p-3 card-3d">
                     <div className="flex items-center gap-2 mb-2">
                       <div className="glass-border p-1.5 bg-[#f0f0f0] rounded">
-                        <TrendingUp className="w-3.5 h-3.5 text-[#1E1E1E]" />
+                        <TrendingUp className="w-3.5 h-3.5 gradient-text" />
                       </div>
                       <div>
-                        <h3 className="font-bold text-[#1E1E1E] text-xs">Impact annuel</h3>
+                        <h3 className="font-bold text-gray-600 text-xs">Impact annuel</h3>
                         <p className="text-xs text-gray-600">Projection sur 12 mois</p>
                       </div>
                     </div>
                     <div className="text-center">
-                      <div className="text-xl font-bold text-[#1E1E1E] mb-0.5">
-                        {formatNumber(savings.annualSavings).split(',')[0]}
+                      <div className="text-xl font-bold gradient-text mb-0.5">
+                        {formatCurrency(savings.annualSavings).split(',')[0]}
                       </div>
                       <div className="text-gray-600 text-xs">FCFA par an</div>
-                      <div className="text-xs text-[#2a2a2a] mt-0.5">
+                      <div className="text-xs gradient-text mt-0.5">
                         ROI potentiel &gt; 200%
                       </div>
                     </div>
