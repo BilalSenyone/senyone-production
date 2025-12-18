@@ -1,7 +1,7 @@
 import { BarChart3, X, PieChart, TrendingUp, Target, Clock, DollarSign, Calculator, Shield, Check, FileDown } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import { CompanyInfo, AlertDialog, CompanyInfoModal } from "./QuestionComponent";
-import {calculateSavings} from "@/types/formTypes";
+import { CompanyInfo } from "@/types/formTypes";
+import {AlertDialog, CompanyInfoModal, calculateSavings} from "@/components/helpers/QuestionHelp"
 import { useToast } from '@/components/ui/use-toast';
 import emailjs from '@emailjs/browser';
 
@@ -565,4 +565,3 @@ export const DetailedAnalysis: React.FC<DetailedAnalysisProps> = ({
 function navigateToHome() {
   throw new Error("Function not implemented.");
 }
-
