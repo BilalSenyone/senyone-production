@@ -821,7 +821,7 @@ const ThreeQuestionCalculator: React.FC = () => {
   const navigateToHome = () => {
     window.location.href = '/';
   };
-
+/*
   const generatePDF = async (customAnswers: Record<string, QuestionAnswer>, companyInfo?: CompanyInfo) => {
     const savings = calculateSavingsUtil(customAnswers);
     const pdf = new jsPDF('p', 'mm', 'a4');
@@ -852,9 +852,10 @@ const ThreeQuestionCalculator: React.FC = () => {
     });
     const timeStr = currentDate.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
     
-    // Propriétés du document (métadonnées)
+    // Propriétés du document (métadonnées)  SENYONE_Rapport-danalyse_Entreprise-Client_DD-MM-YY
+
     pdf.setProperties({
-      title: `Rapport d'automatisation - ${companyInfo?.companyName || 'Entreprise'}`,
+      title: `SENYONE_Rapport-danalyse_${companyInfo?.companyName || 'Entreprise'}_${dateStr}`,
       subject: 'Évaluation du potentiel d\'automatisation et de ROI',
       author: 'SENYONE Automation Solutions',
       keywords: 'automatisation, optimisation, productivité, ROI, analyse, SENYONE',
@@ -1541,6 +1542,204 @@ const ThreeQuestionCalculator: React.FC = () => {
 
     return pdf;
   };
+*/
+
+const generatePDF = async (customAnswers: Record<string, any>, companyInfo?: CompanyInfo) => {
+    const savings = calculateSavingsUtil(customAnswers);
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    
+    // --- CONFIGURATION ET DIMENSIONS ---
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    const MARGIN = 20;
+    const centerX = pageWidth / 2;
+    const contentWidth = pageWidth - (MARGIN * 2);
+
+    const colors = {
+        primary: '#1E3A8A',
+        primaryLight: '#EFF6FF',
+        primaryDark: '#1E40AF',
+        secondary: '#F59E0B',
+        dark: '#111827',
+        gray: '#6B7280',
+        grayLight: '#F9FAFB',
+        grayBorder: '#E5E7EB',
+        success: '#10B981'
+    };
+
+    // Helper pour un formatage propre (évite les bugs d'espaces insécables)
+    const formatCurrency = (num: number) => {
+        return new Intl.NumberFormat('fr-FR').format(Math.round(num)).replace(/\s/g, ' ') + " FCFA";
+    };
+
+    const currentDate = new Date();
+    const dateStr = currentDate.toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    const timeStr = currentDate.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+
+    // --- EN-TÊTE ---
+    try {
+        const logoDataUri = await getImageDataUrl(logoPng);
+        pdf.addImage(logoDataUri, 'PNG', MARGIN, 15, 25, 0);
+    } catch (e) {
+        pdf.setFontSize(16);
+        pdf.setFont('helvetica', 'bold');
+        pdf.setTextColor(colors.primary);
+        pdf.text('SENYONE', MARGIN, 22);
+    }
+
+    if (companyInfo) {
+        pdf.setFontSize(9);
+        pdf.setFont('helvetica', 'bold');
+        pdf.setTextColor(colors.dark);
+        pdf.text(companyInfo.companyName, pageWidth - MARGIN, 18, { align: 'right' });
+        
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(8);
+        let infoY = 22;
+        if (companyInfo.nomCompletPerson) {
+            pdf.text(`${companyInfo.nomCompletPerson}${companyInfo.position ? ` (${companyInfo.position})` : ''}`, pageWidth - MARGIN, infoY + 4, { align: 'right' });
+            infoY += 4;
+        }
+        pdf.text(`${companyInfo.email}${companyInfo.phone ? ` • ${companyInfo.phone}` : ''}`, pageWidth - MARGIN, infoY + 4, { align: 'right' });
+    }
+
+    // --- TITRE ---
+    let yPos = 45;
+    pdf.setFontSize(17);
+    pdf.setFont('helvetica', 'bold');
+    pdf.setTextColor(colors.dark);
+    pdf.text('RAPPORT D\'ANALYSE D\'AUTOMATISATION', centerX, yPos, { align: 'center' });
+    
+    yPos += 7;
+    pdf.setFontSize(12);
+    pdf.setFont('helvetica', 'normal');
+    pdf.text(`Préparé pour : ${companyInfo?.companyName || 'Votre entreprise'}`, centerX, yPos, { align: 'center' });
+
+    yPos += 10;
+    pdf.setFontSize(9);
+    pdf.setTextColor(colors.gray);
+    pdf.text(`Réf: S607612 | Émis le: ${dateStr} à ${timeStr}`, MARGIN, yPos);
+
+    yPos += 4;
+    pdf.setDrawColor(colors.primary);
+    pdf.setLineWidth(0.5);
+    pdf.line(MARGIN, yPos, pageWidth - MARGIN, yPos);
+
+    // --- RÉSUMÉ EXÉCUTIF (CORRIGÉ) ---
+    yPos += 15;
+    pdf.setFontSize(11);
+    pdf.setFont('helvetica', 'normal');
+    pdf.setTextColor(colors.dark);
+
+    const summaryText = `Cette analyse démontre que l'automatisation des processus répétitifs pourrait générer des économies annuelles de ${formatCurrency(savings.annualSavings)} pour ${companyInfo?.companyName || 'votre entreprise'}, avec un retour sur investissement de ${formatCurrency(savings.roi)} et un délai de rentabilité de ${savings.paybackPeriod} mois.`;
+
+    // Découpage propre du texte
+    const wrappedSummary = pdf.splitTextToSize(summaryText, contentWidth);
+    
+    wrappedSummary.forEach((line: string) => {
+        // align: center avec centerX garantit que le texte ne colle pas à gauche
+        // Ne pas mettre maxWidth ici pour éviter le bug d'espacement des lettres
+        pdf.text(line.trim(), centerX, yPos, { align: 'center' });
+        yPos += 7;
+    });
+
+    yPos += 10;
+
+    // --- SECTION 1 : DONNÉES D'ENTRÉE ---
+    pdf.setFillColor(colors.primaryLight);
+    pdf.roundedRect(MARGIN, yPos, contentWidth, 8, 1, 1, 'F');
+    pdf.setFontSize(11);
+    pdf.setFont('helvetica', 'bold');
+    pdf.setTextColor(colors.primaryDark);
+    pdf.text('1. DONNÉES D\'ENTRÉE', MARGIN + 5, yPos + 5.5);
+    
+    yPos += 12;
+    autoTable(pdf, {
+        startY: yPos,
+        margin: { left: MARGIN, right: MARGIN },
+        head: [['Paramètre', 'Valeur', 'Unité', 'Description']],
+        body: [
+            ['Volume horaire hebdomadaire', customAnswers.volume.toString(), 'heures', 'Tâches répétitives'],
+            ['Coût horaire moyen', formatCurrency(customAnswers.cout).replace(' FCFA', ''), 'FCFA/h', 'Coût avec charges'],
+            ['Taux d\'automatisation', customAnswers.taux.toString() + '%', '%', 'Potentiel estimé']
+        ],
+        theme: 'grid',
+        styles: { fontSize: 9, cellPadding: 4, halign: 'center' },
+        headStyles: { fillColor: colors.primary, textColor: 255 },
+        columnStyles: { 0: { halign: 'left', fontStyle: 'bold' }, 3: { halign: 'left' } }
+    });
+
+    yPos = (pdf as any).lastAutoTable.finalY + 15;
+
+    // --- SECTION 2 : RÉSULTATS CLÉS (CARTES) ---
+    pdf.setFillColor(colors.grayLight);
+    pdf.roundedRect(MARGIN, yPos, contentWidth, 8, 1, 1, 'F');
+    pdf.setTextColor(colors.dark);
+    pdf.text('2. RÉSULTATS CLÉS ESTIMÉS', MARGIN + 5, yPos + 5.5);
+    
+    yPos += 12;
+    const cardW = (contentWidth - 10) / 2;
+    const cardH = 28;
+    const metrics = [
+        { title: 'ÉCONOMIES ANNUELLES', value: formatCurrency(savings.annualSavings), color: colors.secondary },
+        { title: 'TEMPS GAGNÉ / SEMAINE', value: `${savings.automatableHours} h`, color: colors.primary },
+        { title: 'ROI (ANNUEL)', value: formatCurrency(savings.roi), color: colors.success },
+        { title: 'RENTABILITÉ', value: `${savings.paybackPeriod} Mois`, color: colors.primaryDark }
+    ];
+
+    metrics.forEach((m, i) => {
+        const col = i % 2;
+        const row = Math.floor(i / 2);
+        const x = MARGIN + col * (cardW + 10);
+        const y = yPos + row * (cardH + 8);
+
+        pdf.setDrawColor(230);
+        pdf.setFillColor(255, 255, 255);
+        pdf.roundedRect(x, y, cardW, cardH, 2, 2, 'FD');
+        
+        pdf.setFontSize(8);
+        pdf.setFont('helvetica', 'bold');
+        pdf.setTextColor(colors.gray);
+        pdf.text(m.title, x + cardW / 2, y + 8, { align: 'center' });
+
+        pdf.setFontSize(12);
+        pdf.setTextColor(m.color);
+        pdf.text(m.value, x + cardW / 2, y + 18, { align: 'center' });
+    });
+
+    yPos += 70;
+
+    // --- SECTION 3 : ANALYSE DÉTAILLÉE ---
+    if (yPos > 240) { pdf.addPage(); yPos = 20; }
+    
+    autoTable(pdf, {
+        startY: yPos,
+        margin: { left: MARGIN, right: MARGIN },
+        head: [['Indicateur', 'Mensuel', 'Annuel']],
+        body: [
+            ['Coût actuel des processus', formatCurrency(savings.weeklyCost * 4.33), formatCurrency(savings.annualCost)],
+            ['Économies potentielles', formatCurrency(savings.monthlySavings), formatCurrency(savings.annualSavings)],
+            ['Productivité libérée', `${Math.round(savings.automatableHours * 4.33)} h`, `${Math.round(savings.automatableHours * 52)} h`]
+        ],
+        theme: 'striped',
+        headStyles: { fillColor: colors.dark },
+        columnStyles: { 0: { fontStyle: 'bold' }, 1: { halign: 'right' }, 2: { halign: 'right', textColor: colors.success, fontStyle: 'bold' } }
+    });
+
+    // --- PIED DE PAGE ---
+    const pageCount = pdf.getNumberOfPages();
+    for (let i = 1; i <= pageCount; i++) {
+        pdf.setPage(i);
+        pdf.setFontSize(8);
+        pdf.setTextColor(colors.gray);
+        pdf.line(MARGIN, pageHeight - 15, pageWidth - MARGIN, pageHeight - 15);
+        pdf.text(`SENYONE Analytics - Document Confidentiel`, MARGIN, pageHeight - 10);
+        pdf.text(`Page ${i} / ${pageCount}`, pageWidth - MARGIN, pageHeight - 10, { align: 'right' });
+    }
+
+    return pdf;
+};
+
 
   const handleDownloadPDF = async (customAnswers?: Record<string, QuestionAnswer>, companyInfoParam?: CompanyInfo) => {
     const answersToUse = customAnswers || answers;
@@ -1574,7 +1773,7 @@ const ThreeQuestionCalculator: React.FC = () => {
         ? companyInfoToUse.companyName.replace(/[^a-z0-9]/gi, '_').toLowerCase() 
         : 'rapport';
       
-      const fileName = `rapport-automatisation_${companyName}_${formattedDate}.pdf`;
+      const fileName = `SENYONE_Rapport-d-analyse_${companyName}_${formattedDate}.pdf`;
       
       // Télécharger le PDF localement
       pdf.save(fileName);
