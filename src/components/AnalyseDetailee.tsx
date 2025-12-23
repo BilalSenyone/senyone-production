@@ -345,11 +345,11 @@ export const DetailedAnalysis: React.FC<DetailedAnalysisProps> = ({
                         <div className="text-xs text-gray-600">Mois pour ROI positif</div>
                       </div>
                       <div className="text-center p-3 glass-effect rounded">
-                        <div className="text-lg font-bold gradient-text mb-1">{formatCurrency(savings.implementationCost).split(' ')[0]}</div>
+                        <div className="text-lg font-bold gradient-text mb-1">{formatCurrency(savings.implementationCost)}</div>
                         <div className="text-xs text-gray-600">Investissement initial</div>
                       </div>
                       <div className="text-center p-3 glass-effect rounded">
-                        <div className="text-lg font-bold gradient-text mb-1">{Math.round(savings.roi / savings.paybackPeriod)}%</div>
+                        <div className="text-lg font-bold gradient-text mb-1">{Math.round(savings.roi / 12)}%</div>
                         <div className="text-xs text-gray-600">ROI mensuel moyen</div>
                       </div>
                     </div>

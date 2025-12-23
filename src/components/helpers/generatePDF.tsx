@@ -232,59 +232,49 @@ export const generatePDF = async (customAnswers: Record<string, any>, companyInf
     ];
 
     autoTable(pdf, {
-      startY: yPos,
-      margin: { left: 20, right: 20 },
-      head: [detailedAnalysis[0]],
-      body: detailedAnalysis.slice(1),
-      theme: 'grid',
-      styles: {
-        halign: 'left',
-        fontSize: 9,
-        cellPadding: 5,
-        lineColor: [parseInt(colors.grayBorder.slice(1, 3), 16), 
-                   parseInt(colors.grayBorder.slice(3, 5), 16), 
-                   parseInt(colors.grayBorder.slice(5, 7), 16)],
-        lineWidth: 0.1
-      },
-      headStyles: {
-        halign: 'left',
-        fillColor: [parseInt(colors.dark.slice(1, 3), 16), 
-                   parseInt(colors.dark.slice(3, 5), 16), 
-                   parseInt(colors.dark.slice(5, 7), 16)],
-        textColor: 255,
-        fontStyle: 'bold',
-        fontSize: 9,
-        cellPadding: 6
-      },
-      columnStyles: {
-        0: { 
-          fontStyle: 'bold',
-          cellWidth: 55,
-          halign: 'left'
+        startY: yPos,
+        margin: { left: MARGIN, right: MARGIN },
+        head: [['Description', 'Hebdomadaire', 'Mensuel', 'Annuel'],],
+        body: [
+            ['Coût actuel', 
+          `${formatCurrency(Math.round(savings.weeklyCost))}`, 
+          `${formatCurrency(Math.round(savings.annualCost/12))}`, 
+          `${formatCurrency(Math.round(savings.annualCost))}`,], 
+          ['Économies potentielles', 
+          `${formatCurrency(Math.round(savings.weeklySavings))}`, 
+          `${formatCurrency(Math.round(savings.monthlySavings))}`, 
+          `${formatCurrency(Math.round(savings.annualSavings))}`],
+          ['Gain de productivité', 
+          `${formatNumber(Math.round(savings.automatableHours))} heures`, 
+          `${formatNumber(Math.round(savings.automatableHours * 4.33))} heures`, 
+          `${formatNumber(Math.round(savings.automatableHours * 52))} heures`]
+        ],
+        theme: 'grid',
+        styles: { 
+            fontSize: 9, 
+            cellPadding: 4, 
+            halign: 'center',
+            font: 'NeuePlak',
+            textColor: [0, 0, 0]
         },
-        1: { 
-          cellWidth: 40,
-          halign: 'center',
-          fontStyle: 'bold'
+        headStyles: { 
+            fillColor: colors.primary, 
+            textColor: 255,
+                fontStyle: 'bold',
+            font: 'NeuePlak'
         },
-        2: {
-          cellWidth: 40,
-          halign: 'center'
-        },
-        3: {
-          cellWidth: 45,
-          halign: 'center',
-          fontStyle: 'bold'
-        }
-      },
-      didParseCell: function(data: any) {
-        if (data.section === 'body' && data.column.index === 3) {
-          data.cell.styles.textColor = [parseInt(colors.success.slice(1, 3), 16), 
-                                        parseInt(colors.success.slice(3, 5), 16), 
-                                        parseInt(colors.success.slice(5, 7), 16)];
-        }
-      }
-    });
+        columnStyles: { 
+            0: { 
+                halign: 'left',
+                font: 'NeuePlak'
+            }, 
+            1: { 
+                halign: 'left',
+                font: 'NeuePlak'
+            } 
+        }}
+      );
+
 
     yPos = (pdf as any).lastAutoTable?.finalY || yPos;
     yPos += 15;
