@@ -90,7 +90,7 @@ const Footer = () => {
             <ul className="space-y-3 font-neue-plak-thin text-xs">
               <li>
                 <a href="/financiere" className="text-white hover:text-gray-300 transition-colors">
-                  Direction financière
+                  Direction Financière
                 </a>
               </li>
               <li>
@@ -105,17 +105,17 @@ const Footer = () => {
               </li>
               <li>
                 <a href="commerciale" className="text-white hover:text-gray-300 transition-colors">
-                  Direction commerciale
+                  Direction Commerciale
                 </a>
               </li>
               <li>
                 <a href="ressources-humaines" className="text-white hover:text-gray-300 transition-colors">
-                  Direction des ressources humaines
+                  Direction des Ressources Humaines
                 </a>
               </li>
               <li>
                 <a href="operations-production" className="text-white hover:text-gray-300 transition-colors">
-                  Direction des opérations
+                  Direction des Opérations/Production
                 </a>
               </li>
               <li>

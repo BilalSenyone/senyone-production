@@ -354,14 +354,16 @@ export const generatePDF = async (customAnswers: Record<string, any>, companyInf
         fontStyle: 'bold',
         fontSize: 9,
         cellPadding: 6,
-        halign: 'left'
+        halign: 'left',
+        font: 'NeuePlak',
       },
       bodyStyles: {
         textColor: [parseInt(colors.dark.slice(1, 3), 16), 
                    parseInt(colors.dark.slice(3, 5), 16), 
                    parseInt(colors.dark.slice(5, 7), 16)],
         fontSize: 9,
-        halign: 'left'
+        halign: 'left',
+        font: 'NeuePlak',
       },
       alternateRowStyles: {
         fillColor: [parseInt(colors.grayLight.slice(1, 3), 16), 
@@ -427,7 +429,7 @@ export const generatePDF = async (customAnswers: Record<string, any>, companyInf
         headStyles: { 
             fillColor: colors.primary, 
             textColor: 255,
-                fontStyle: 'bold',
+            fontStyle: 'bold',
             font: 'NeuePlak'
         },
         columnStyles: { 

@@ -82,7 +82,7 @@ const Navbar = () => {
     },
     {
       link: "./achats-logistique",
-      label: "Direction Achat/Logistique",
+      label: "Direction Achats/Logistique",
     }
   ]
 
